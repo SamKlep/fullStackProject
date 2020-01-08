@@ -4,8 +4,8 @@
   }
   
   body {
-    background: #007bff;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
   }
 
   
@@ -23,6 +23,12 @@
   
   .card-signin .card-body {
     padding: 2rem;
+  }
+
+  .card {
+    -webkit-box-shadow: 0px 63px 143px 10px rgba(106,153,222,1);
+    -moz-box-shadow: 0px 63px 143px 10px rgba(106,153,222,1);
+    box-shadow: 0px 63px 143px 10px rgba(106,153,222,1);
   }
   
   .form-signin {
