@@ -115,6 +115,15 @@
     color: white;
     background-color: black;
   }
+
+  .btn {
+    border: 4px solid transparent
+  }
+
+  .btn:hover {
+    border: 4px solid purple;
+    transition: border 1s;
+  }
   
   /* Fallback for Edge
   -------------------------------------------------- */
@@ -141,13 +150,20 @@
     }
   }
 
- 
+/* HEADER IMAGE */
 
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    padding-top: 30px;
-  }
+.image-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding-top: 30px;
+}
+
+#headerLogo {
+  max-width: 100%;
+  height: 20%;
+}
+
+
 
