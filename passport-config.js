@@ -1,11 +1,13 @@
 const localStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
+/*
 function initialize(passport) {
     const authenticateUser = function (email, password, done) {
         const user = getUserByEmail(inputEmail)
         if (user == null) {
-            return done(null, false, { message: 'No user with that email'}),
+            return done(null, false, { message: 'No user with that email'})
+
         }
 
         try {
@@ -30,3 +32,4 @@ passport.deserializeUser(function (id, done))
 
 
 }
+*/
