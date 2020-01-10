@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/SamKlep/fullStackProject#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-flash": "0.0.2",
     "express-session": "^1.17.0",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
