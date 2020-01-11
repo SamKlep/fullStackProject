@@ -6,6 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 
+
 const initalizePassport = require('./passport-config');
 initalizePassport(
     passport,
@@ -13,17 +14,12 @@ initalizePassport(
     id => users.find(user => user.id === id)
 )
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app,use(flash())
-
-app.set('view-engine', 'ejs')
-
 app.use(express.static(__dirname + '/public'));
-
 app.use(passport.initialize());
 app.use(passport.session());
+app,use(flash());
 
 app.use(session({
     secret: 'redwine',
@@ -67,7 +63,7 @@ app.delete('/logout', (req, res) => {
 
 app.post("/drinks", function (req, response) {
     console.log('Im here');
-    response.send("another item");
+    response.send("another item"); 
 });
 
 ////////////////////////////////////////
