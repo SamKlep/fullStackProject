@@ -5,17 +5,14 @@ const models = require('./models');
 const passport = require('passport');
 const session = require('express-session');
 
-/*
-const initalizePassport = require('./passport-config');
-initalizePassport(passport);
-*/
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 
 app.set('view-engine', 'ejs')
 
-app.use(express.static(__dirname + '/public'));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(session({
@@ -24,18 +21,25 @@ app.use(session({
     saveUninitialized: false,
 }))
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.set("views", __dirname + "/views");
 
-////////////////////////////////////
 
-app.get("/", function (req, response) {
-    console.log('Im here');
-    response.send("new item");
+
+//////////Express Routes////////////////////////
+
+app.get("/", function(req, res) { 
+  res.render('index');
 });
 
 //////////////////////////////////////
 
-app.post("/drinks", function (req, response) {
+app.post("/wine", function (req, response) {
+    console.log('Im here');
+    response.send("another item");
+});
+
+app.post("/beer", function (req, response) {
     console.log('Im here');
     response.send("another item");
 });

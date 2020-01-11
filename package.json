@@ -18,6 +18,7 @@
   "homepage": "https://github.com/SamKlep/fullStackProject#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "crypto": "^1.0.1",
     "ejs": "^3.0.1",
