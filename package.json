@@ -19,11 +19,12 @@
   "dependencies": {
     "bcrypt": "^3.0.7",
     "bcrypt-nodejs": "0.0.3",
-    "bcryptjs": "^2.4.3",
     "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "express-flash": "0.0.2",
     "express-session": "^1.17.0",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
