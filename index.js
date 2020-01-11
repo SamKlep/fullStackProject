@@ -6,12 +6,6 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 
-const initalizePassport = require('./passport-config');
-initalizePassport(
-    passport,
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
-)
 
 
 app.use(bodyParser.json());
@@ -28,7 +22,9 @@ app.use(passport.session());
 app.use(session({
     secret: 'redwine',
     resave: false,
+
     saveUninitialized: false
+
 }))
 
 app.set('view engine', 'ejs')
@@ -83,6 +79,7 @@ app.delete("/drinks", function (req, response) {
     response.send("item deleted");
 });
 
+
 // THIS FUNCTION CHECKS FOR AUTHENTICATION
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -98,6 +95,7 @@ function checkNotAuthenticated(req, res, next) {
     }
     return res.redirect('/')
 }
+
 
 app.listen(8080, function () {
     console.log('Example app listening on port 8080!');
