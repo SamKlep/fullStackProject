@@ -6,21 +6,23 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 
-const initalizePassport = require('./passport-config')
-initalizePassport (
-    passport,
-    email =>
-        users.find(user => user.email === email),
-    id => 
-        users.find(user => user.id === id)
-);
+// const initalizePassport = require('./passport-config')
+// // initalizePassport (
+// //     passport,
+// //     email =>
+// //         users.find(user => user.email === email),
+// //     id => 
+// //         users.find(user => user.id === id)
+// );
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
+app.use(express.urlencoded({ extended: false}))
 app.use(passport.initialize());
 app.use(passport.session());
-app,use(flash());
+app.use(flash());
+
 app.use(session({
     secret: 'redwine',
     resave: false,
@@ -28,6 +30,22 @@ app.use(session({
 }));
 
 app.set('view engine', 'ejs');
+
+/////////////////LOGIN PAGE///////////////////
+
+app.get('/index', (req, res) => {
+    res.render('index.ejs')
+})
+
+/////////////////REGISTER PAGE///////////////////
+
+app.get('/register', (req, res) => {
+    res.render('register.ejs')
+})
+
+app.post('/register', (req, res) => {
+    
+})
 
 ////////////////////////////////////
 
@@ -97,5 +115,5 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 app.listen(8080, function () {
-    console.log('Example app listening on port 8080!');
+    console.log('Tasting Board app listening on port 8080!');
 })
