@@ -6,37 +6,33 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 
-
+const initalizePassport = require('./passport-config')
+initalizePassport (
+    passport,
+    email =>
+        users.find(user => user.email === email),
+    id => 
+        users.find(user => user.id === id)
+);
 
 app.use(express.static('public'));
 
-app.use(bodyParser.json());
-
-
 app.set('view-engine', 'ejs')
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(flash())
-
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
-
+app,use(flash());
 app.use(session({
     secret: 'redwine',
     resave: false,
-
     saveUninitialized: false
-
-}))
+}));
 
 app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
+
 
 
 
@@ -50,7 +46,7 @@ app.get("/", function(req, res) {
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/index'
-}))
+}));
 
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
@@ -65,7 +61,7 @@ app.get("/", checkAuthenticated, function (req, response) {
 app.get("/register", checkNotAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
-    res.render('register.html') 
+    res.render('register') 
     // INSERT REGISTER PAGE LINK ABOVE
 });
 
@@ -85,7 +81,7 @@ app.post("/wine", function (req, response) {
 
 app.post("/beer", function (req, response) {
     console.log('Im here');
-    response.send("another item");
+    response.send("another item"); 
 });
 
 ////////////////////////////////////////
@@ -117,7 +113,6 @@ function checkNotAuthenticated(req, res, next) {
     }
     return res.redirect('/')
 }
-
 
 app.listen(8080, function () {
     console.log('Example app listening on port 8080!');

@@ -1,4 +1,8 @@
+// CONFIGURATION FOR LOCAL LOG-IN/PASSPORT
+
 const localStrategy = require('passport-local').Strategy
+// THIS DETERMINES WHAT STRATEGY 
+
 const bcrypt = require('bcrypt')
 
 
@@ -18,10 +22,7 @@ function initialize(passport, getUserByEmail, getUserById) {
         }
     } catch(e) {
             return done(e)
-
         }
-
-        
     }
 
 passport.use(new localStrategy({
