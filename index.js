@@ -6,11 +6,13 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 
-const initalizePassport = require('./passport-config');
-initalizePassport(
+const initalizePassport = require('./passport-config')
+initalizePassport (
     passport,
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
+    email =>
+        users.find(user => user.email === email),
+    id => 
+        users.find(user => user.id === id)
 );
 
 app.use(bodyParser.json());
@@ -19,16 +21,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
 app,use(flash());
-
 app.use(session({
     secret: 'redwine',
     resave: false,
-
     saveUninitialized: false
+}));
 
-}))
-
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 ////////////////////////////////////
 
@@ -49,7 +48,7 @@ app.get("/", checkAuthenticated, function (req, response) {
 app.get("/register", checkNotAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
-    res.render('register.html') 
+    res.render('register') 
     // INSERT REGISTER PAGE LINK ABOVE
 });
 
@@ -96,7 +95,6 @@ function checkNotAuthenticated(req, res, next) {
     }
     return res.redirect('/')
 }
-
 
 app.listen(8080, function () {
     console.log('Example app listening on port 8080!');
