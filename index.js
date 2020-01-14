@@ -5,15 +5,37 @@ const models = require('./models');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
+const promise = require('bluebird');
 
-// const initalizePassport = require('./passport-config')
-// // initalizePassport (
-// //     passport,
-// //     email =>
-// //         users.find(user => user.email === email),
-// //     id => 
-// //         users.find(user => user.id === id)
-// );
+// const pg = require('pg');
+// const connectionString = "postgres://kev:spinon22@Postgres 12/ip:5432/tastingBoard";
+// const pgClient = new pg.Client(connectionString);
+// pgClient.connect();
+
+// PG-PROMISE INIT OPTIONS
+const initOptions = {
+    promiseLib: promise,
+};
+
+// CONNECTING TO LOCAL DATABASE
+const config = {
+    host: 'localhost',
+    port: 5432,
+    database: 'tastingBoard',
+    user: 'PostgreSQL 12'
+};
+
+const pgp = require('pg-promise')(initOptions);
+const db = pgp(config);
+
+const initalizePassport = require('./passport-config')
+initalizePassport (
+    passport,
+    email =>
+        users.find(user => user.email === email),
+    id => 
+        users.find(user => user.id === id)
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,8 +65,21 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 
-app.post('/register', (req, res) => {
-    
+const users = []
+
+app.post('/register', async (req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        users.push({
+            email: req.body.inputEmail,
+            password: hashedPassword
+        })
+        res.redirect('/login')
+    } 
+    catch {
+        res.redirect('/register')
+    }
+    console.log(users)
 })
 
 ////////////////////////////////////
@@ -67,7 +102,6 @@ app.get("/register", checkNotAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
     res.render('register') 
-    // INSERT REGISTER PAGE LINK ABOVE
 });
 
 ////////////////LOG OUT REDIRECT//////////////////////
