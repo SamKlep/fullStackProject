@@ -7,10 +7,6 @@ const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
 
-// const pg = require('pg');
-// const connectionString = "postgres://kev:spinon22@Postgres 12/ip:5432/tastingBoard";
-// const pgClient = new pg.Client(connectionString);
-// pgClient.connect();
 
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
@@ -22,7 +18,9 @@ const config = {
     host: 'localhost',
     port: 5432,
     database: 'tastingBoard',
-    user: 'PostgreSQL 12'
+    user: 'postgres',
+    username: 'postgres',
+    password: 'admin'
 };
 
 const pgp = require('pg-promise')(initOptions);
@@ -32,9 +30,9 @@ const initalizePassport = require('./passport-config')
 initalizePassport (
     passport,
     email =>
-        users.find(user => user.email === email),
+        users.find(user => users.email === inputEmail),
     id => 
-        users.find(user => user.id === id)
+        users.find(user => users.password === inputPassword)
 );
 
 app.use(bodyParser.json());
@@ -65,22 +63,25 @@ app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 
-const users = []
-
-app.post('/register', async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            email: req.body.inputEmail,
-            password: hashedPassword
-        })
-        res.redirect('/login')
-    } 
-    catch {
-        res.redirect('/register')
-    }
-    console.log(users)
-})
+app.post('/register', function (req, res) {
+    models.user.create({
+        email: req.body.inputEmail,
+        password: req.body.inputPassword
+    })
+    .then(function (user) {
+        console.log(user)
+    });
+});
+    // try {
+    //     const hashedPassword = await bcrypt.hash(req.body.inputPassword, 10)
+    //     users.push({
+    //         email: req.body.inputEmail,
+    //         password: hashedPassword
+    //     })
+    //     res.redirect('/login')
+    // } 
+    // catch {
+    //     res.redirect('/register')
 
 ////////////////////////////////////
 
@@ -91,7 +92,7 @@ app.post('/index', passport.authenticate('local', {
 
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
-app.get("/", checkAuthenticated, function (req, response) {
+app.get("/welcome", checkAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
 });
