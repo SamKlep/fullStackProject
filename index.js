@@ -26,6 +26,9 @@ const config = {
 const pgp = require('pg-promise')(initOptions);
 const db = pgp(config);
 
+
+// THIS IS A TEST
+
 const initalizePassport = require('./passport-config')
 initalizePassport (
     passport,
