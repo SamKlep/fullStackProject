@@ -35,6 +35,10 @@ initalizePassport (
         users.find(user => users.password === inputPassword)
 );
 
+app.use(express.static('public'));
+
+app.set('view-engine', 'ejs')
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
@@ -50,6 +54,7 @@ app.use(session({
 }));
 
 app.set('view engine', 'ejs');
+app.set("views", __dirname + "/views");
 
 /////////////////LOGIN PAGE///////////////////
 
@@ -83,7 +88,12 @@ app.post('/register', function (req, res) {
     // catch {
     //     res.redirect('/register')
 
-////////////////////////////////////
+
+//////////Express Routes////////////////////////
+
+app.get("/", function(req, res) { 
+  res.render('index');
+})
 
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/',
@@ -95,6 +105,7 @@ app.post('/index', passport.authenticate('local', {
 app.get("/welcome", checkAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
+
 });
 
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
@@ -114,7 +125,12 @@ app.delete('/logout', (req, res) => {
 
 //////////////////////////////////////
 
-app.post("/drinks", function (req, response) {
+app.post("/wine", function (req, response) {
+    console.log('Im here');
+    response.send("another item");
+});
+
+app.post("/beer", function (req, response) {
     console.log('Im here');
     response.send("another item"); 
 });
