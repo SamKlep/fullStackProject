@@ -23,7 +23,7 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
-app.engine('html', require('ejs').renderFile);
+
 
 
 //////////Express Routes////////////////////////
