@@ -65,6 +65,26 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 })
 
+passport.use(new LocalStrategy(
+    function (email, password, done) {
+      models.user.findOne({
+        where: {
+          email: req.body.inputEmail
+        }
+      }).then(function (email) {
+        if (!email) {
+          return done(null, false);
+        }
+        if (email.password != inputPassword) {
+          return done(null, false);
+        }
+        return done(null, email);
+      }).catch(function (err) {
+        return done(err);
+      });
+    }
+  ));
+
 /////////////////REGISTER PAGE///////////////////
 
 app.get('/register', (req, res) => {
@@ -99,7 +119,7 @@ app.get("/", function(req, res) {
 })
 
 app.post('/index', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/welcome',
     failureRedirect: '/index'
 }));
 
