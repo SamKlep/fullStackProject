@@ -39,9 +39,6 @@ initalizePassport (
         users.find(user => users.password === inputPassword)
 );
 
-app.use(express.static('public'));
-
-app.set('view-engine', 'ejs')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -66,6 +63,7 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 })
 
+
 // passport.use(new LocalStrategy(
 //     function (email, password, done) {
 //       models.user.findOne({
@@ -76,6 +74,7 @@ app.get('/index', (req, res) => {
 //         if (!email) {
 //           return done(null, false);
 //         }
+
 //         if (email.password != inputPassword) {
 //           return done(null, false);
 //         }
@@ -85,6 +84,7 @@ app.get('/index', (req, res) => {
 //       });
 //     }
 //   ));
+
 
 
 
@@ -98,6 +98,7 @@ passport.use(
 
     })
 );
+
 
 /////////////////REGISTER PAGE///////////////////
 
@@ -132,6 +133,18 @@ app.get("/", function(req, res) {
   res.render('index');
 })
 
+app.get("/", function(req, res) { 
+    res.render('wine');
+  })
+
+  app.get("/", function(req, res) { 
+    res.render('beer');
+  })
+
+  app.get("/", function(req, res) { 
+    res.render('liquor');
+  })
+
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
     failureRedirect: '/index'
@@ -139,11 +152,17 @@ app.post('/index', passport.authenticate('local', {
 
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
-app.get("/welcome", checkAuthenticated, function (req, response) {
+app.get("/welcome", function (req, response) {
     console.log('Im here');
-    response.send("new item");
+    response.render("welcome");
 
 });
+
+// app.get("/welcome", checkAuthenticated, function (req, response) {
+//     console.log('Im here');
+//     response.render("welcome");
+
+// });
 
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
 

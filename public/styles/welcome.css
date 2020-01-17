@@ -1,9 +1,29 @@
 body {
     background: rgb(63,94,251);
-    background: linear-gradient( rgba(63,94,251,1) 0%, rgb(255, 255, 255) 100%);
+    background: linear-gradient( rgb(255, 255, 255) 0%, rgba(63,94,251,1) 100%);
   }
 
   .wrapper {
     margin: 0 auto;
 }
 
+#logo {
+  width: 100px;
+  height: 60px;
+}
+
+#footer {
+  width: 100%;
+}
+
+#link:hover {
+  color: rgb(255, 217, 0);
+}
+
+#header-color {
+  background-color: rgb(182, 196, 212);
+}
+
+h4 {
+  color: rgb(162, 162, 162);
+}
