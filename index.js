@@ -6,7 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-
+const ejs = require('ejs');
 
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
@@ -38,9 +38,6 @@ initalizePassport (
         users.find(user => users.password === inputPassword)
 );
 
-app.use(express.static('public'));
-
-app.set('view-engine', 'ejs')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -65,25 +62,25 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 })
 
-passport.use(new LocalStrategy(
-    function (email, password, done) {
-      models.user.findOne({
-        where: {
-          email: req.body.inputEmail
-        }
-      }).then(function (email) {
-        if (!email) {
-          return done(null, false);
-        }
-        if (email.password != inputPassword) {
-          return done(null, false);
-        }
-        return done(null, email);
-      }).catch(function (err) {
-        return done(err);
-      });
-    }
-  ));
+// //passport.use(new LocalStrategy(
+//     //function (email, password, done) {
+//       //models.user.findOne({
+//         //where: {
+//           //email: req.body.inputEmail
+//        // }
+//       //}).then(function (email) {
+//         //if (!email) {
+//           //return done(null, false);
+//         //}
+//         if (email.password != inputPassword) {
+//           return done(null, false);
+//         }
+//         return done(null, email);
+//       }).catch(function (err) {
+//         return done(err);
+//       });
+//     }
+//   ));
 
 /////////////////REGISTER PAGE///////////////////
 
@@ -118,6 +115,18 @@ app.get("/", function(req, res) {
   res.render('index');
 })
 
+app.get("/", function(req, res) { 
+    res.render('wine');
+  })
+
+  app.get("/", function(req, res) { 
+    res.render('beer');
+  })
+
+  app.get("/", function(req, res) { 
+    res.render('liquor');
+  })
+
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
     failureRedirect: '/index'
@@ -125,11 +134,17 @@ app.post('/index', passport.authenticate('local', {
 
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
-app.get("/welcome", checkAuthenticated, function (req, response) {
+app.get("/welcome", function (req, response) {
     console.log('Im here');
-    response.send("new item");
+    response.render("welcome");
 
 });
+
+// app.get("/welcome", checkAuthenticated, function (req, response) {
+//     console.log('Im here');
+//     response.render("welcome");
+
+// });
 
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
 
