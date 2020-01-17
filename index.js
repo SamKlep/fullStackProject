@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const models = require('./models');
 const passport = require('passport');
+const googleStrategy = require('passport-google-oauth');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
@@ -84,6 +85,16 @@ passport.use(new LocalStrategy(
       });
     }
   ));
+
+passport.use(
+    new.googleStrategy({
+        clientID:'1052851154794-b91odviv8dci62t22errbkmni69v09pe.apps.googleusercontent.com',
+        clientSecret:'H1VE4WXwCOfZhV5K6kxV1V_7'
+    }),
+    () => {
+
+    })
+)
 
 /////////////////REGISTER PAGE///////////////////
 
