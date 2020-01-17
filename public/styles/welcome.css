@@ -7,3 +7,12 @@ body {
     margin: 0 auto;
 }
 
+#logo {
+  width: 100px;
+  height: 60px;
+}
+
+#footer {
+  width: 100%;
+}
+
