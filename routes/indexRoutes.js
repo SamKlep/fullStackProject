@@ -2,9 +2,9 @@
 ///////////////////////////////////////////////////
 
 const express = require('express');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const router = express.Router();
+const router = require('express').Router();
 const Wine = require('../models').Wine;
 const User = require('../models').User;
 
@@ -49,10 +49,10 @@ router.get('/google',passport.authenticate('google', {
   scope: ['profile']
 }));
 
-router.get('/google/redirect', (req, res) => {
-  res.send('You reached the callback URL')
-})
-
+// Callback Route for Google to redirect
+router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+  res.send('You reached the callback URI');
+});
   
 ////Create secure router to get and post wine/beer/////
 ////data///////////////////////////////////////////////

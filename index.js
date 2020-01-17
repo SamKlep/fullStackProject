@@ -3,11 +3,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const models = require('./models');
 const passport = require('passport');
-const googleStrategy = require('passport-google-oauth20');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-const keys = require('./config/keys');
+const passportSetup = require('./config/passport-setup')
+const routes = require('./routes/indexRoutes')
 
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
@@ -27,9 +27,7 @@ const config = {
 const pgp = require('pg-promise')(initOptions);
 const db = pgp(config);
 
-
 // THIS IS A TEST
-
 const initalizePassport = require('./passport-config')
 initalizePassport (
     passport,
@@ -47,6 +45,7 @@ app.use(express.urlencoded({ extended: false}))
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(routes);
 
 app.use(session({
     secret: 'redwine',
@@ -56,6 +55,12 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
+
+// HOMEROUTE
+
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 /////////////////LOGIN PAGE///////////////////
 
@@ -84,21 +89,6 @@ app.get('/index', (req, res) => {
 //       });
 //     }
 //   ));
-
-
-
-
-passport.use(
-    new googleStrategy({
-        callbackURL: '/google/redirect',
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret
-    },
-    () => {
-
-    })
-);
-
 
 /////////////////REGISTER PAGE///////////////////
 
