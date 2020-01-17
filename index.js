@@ -90,14 +90,14 @@ app.get('/index', (req, res) => {
 
 passport.use(
     new googleStrategy({
-        callbackURL: 'auth/google/redirect',
+        callbackURL: '/google/redirect',
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
     },
     () => {
 
     })
-)
+);
 
 /////////////////REGISTER PAGE///////////////////
 

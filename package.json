@@ -20,6 +20,7 @@
   "dependencies": {
     "bcrypt": "^3.0.7",
     "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
@@ -28,6 +29,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-flash": "0.0.2",
     "express-session": "^1.17.0",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
