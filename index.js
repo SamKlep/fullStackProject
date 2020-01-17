@@ -3,11 +3,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const models = require('./models');
 const passport = require('passport');
-const googleStrategy = require('passport-google-oauth');
+const googleStrategy = require('passport-google-oauth20');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-
+const keys = require('./config/keys');
 
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
@@ -66,31 +66,34 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 })
 
-passport.use(new LocalStrategy(
-    function (email, password, done) {
-      models.user.findOne({
-        where: {
-          email: req.body.inputEmail
-        }
-      }).then(function (email) {
-        if (!email) {
-          return done(null, false);
-        }
-        if (email.password != inputPassword) {
-          return done(null, false);
-        }
-        return done(null, email);
-      }).catch(function (err) {
-        return done(err);
-      });
-    }
-  ));
+// passport.use(new LocalStrategy(
+//     function (email, password, done) {
+//       models.user.findOne({
+//         where: {
+//           email: req.body.inputEmail
+//         }
+//       }).then(function (email) {
+//         if (!email) {
+//           return done(null, false);
+//         }
+//         if (email.password != inputPassword) {
+//           return done(null, false);
+//         }
+//         return done(null, email);
+//       }).catch(function (err) {
+//         return done(err);
+//       });
+//     }
+//   ));
+
+
 
 passport.use(
-    new.googleStrategy({
-        clientID:'1052851154794-b91odviv8dci62t22errbkmni69v09pe.apps.googleusercontent.com',
-        clientSecret:'H1VE4WXwCOfZhV5K6kxV1V_7'
-    }),
+    new googleStrategy({
+        callbackURL: 'auth/google/redirect',
+        clientID: keys.google.clientID,
+        clientSecret: keys.google.clientSecret
+    },
     () => {
 
     })

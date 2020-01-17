@@ -5,7 +5,6 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
-require('../config/passport')(passport);
 const Wine = require('../models').Wine;
 const User = require('../models').User;
 
@@ -43,6 +42,12 @@ router.post('/signup', function(req, res) {
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });
+
+// Route for Google Authentication
+router.get('auth/google',passport.authenticate('google', {
+  scope: ['profile']
+}));
+
   
 ////Create secure router to get and post wine/beer/////
 ////data///////////////////////////////////////////////
