@@ -4,6 +4,7 @@
   "description": "wine/beer app",
   "main": "index.js",
   "scripts": {
+    "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/SamKlep/fullStackProject#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "bluebird": "^3.7.2",
     "bcrypt-nodejs": "0.0.3",
 
     "bcryptjs": "^2.4.3",
@@ -37,10 +39,14 @@
     "passport-local": "^1.0.0",
     "passport-oauth2": "^1.5.0",
     "pbkdf2": "^3.0.17",
-    "pg": "^7.17.0",
+    "pg": "^7.17.1",
     "pg-hstore": "^2.3.3",
     "pg-promise": "^10.3.5",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
   }
 }
