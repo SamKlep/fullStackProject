@@ -19,12 +19,9 @@
   "homepage": "https://github.com/SamKlep/fullStackProject#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
-    "bluebird": "^3.7.2",
     "bcrypt-nodejs": "0.0.3",
-
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
-
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
@@ -36,6 +33,7 @@
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
+    "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-oauth2": "^1.5.0",
     "pbkdf2": "^3.0.17",
