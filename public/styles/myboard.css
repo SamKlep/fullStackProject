@@ -5,9 +5,10 @@
   */
 
   body {
-    background: rgb(136, 88, 28);
-    background: linear-gradient( #ffdcb8 0%, #c77284 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient( #c8e2e6 0%, #78ffff 100%);
   }
+
 
   .wrapper {
     margin: 0 auto;
@@ -20,6 +21,7 @@
 
 #footer {
   width: 100%;
+  position: fixed;
 }
 
 #link:hover {
@@ -58,6 +60,8 @@ p {
 
 .container {
   font-family: Impact, fantasy;
+  padding: auto;
+  margin: auto;
 }
 
 .header-text {

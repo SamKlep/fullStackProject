@@ -59,15 +59,11 @@ app.set("views", __dirname + "/views");
 // HOMEROUTE
 
 app.get('/', (req, res) => {
+    console.log("hello");
     res.render('index');
 })
 
 /////////////////LOGIN PAGE///////////////////
-
-app.get('/index', (req, res) => {
-    res.render('index.ejs')
-})
-
 
 // passport.use(new LocalStrategy(
 //     function (email, password, done) {
@@ -119,20 +115,28 @@ app.post('/register', function (req, res) {
 
 //////////Express Routes////////////////////////
 
-app.get("/", function(req, res) { 
-  res.render('index');
+app.get('/index', (req, res) => {
+    res.render('index')
 })
 
-app.get("/", function(req, res) { 
+app.get("/wine", function(req, res) { 
+    console.log('wines for you')
     res.render('wine');
   })
 
-  app.get("/", function(req, res) { 
+  app.get("/beer", function(req, res) { 
+    console.log('im beer');
     res.render('beer');
   })
 
-  app.get("/", function(req, res) { 
+  app.get("/liquor", function(req, res) { 
+    console.log('im fancy liquor');
     res.render('liquor');
+  })
+
+  app.get("/myboard", function(req, res) { 
+    console.log('this is my tasting board');
+    res.render('myboard');
   })
 
 app.post('/index', passport.authenticate('local', {
