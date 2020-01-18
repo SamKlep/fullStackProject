@@ -1,91 +1,155 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title></title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <!-- Custom styles -->
-  
-  <link href="/styles/wine.css" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="/styles/wine.css" />
 
 
 
+</head>
 
+<body>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        
-      <a class="navbar-brand" href="welcome.ejs"><img id="logo" src="/images/tastingboardlogo1.png"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+
+      <a class="navbar-brand" href="welcome"><img id="logo" src="/images/tastingboardlogo1.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a id="link" class="nav-link" href="welcome.ejs">Home
+            <a id="link" class="nav-link" href="welcome">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="wine.ejs">Wine</a>
+            <a id="link" class="nav-link" href="wine">Wine</a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="beer.ejs">Beer</a>
+            <a id="link" class="nav-link" href="beer">Beer</a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="liquor.ejs">Liquor</a>
+            <a id="link" class="nav-link" href="liquor">Liquor</a>
           </li>
-            <li class="nav-item">
-                <a id="link" class="nav-link" href="index.ejs">Logout</a>
-              </li>
+          <li class="nav-item">
+            <a id="link" class="nav-link" href="index">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-</head>
 
-  <body>
-    
   <!-- Page Content -->
   <div class="container">
 
-    <div class="header-text">
-    <h1 class="my-4"><strong>Wine</strong></h1>
-      <h5>Enter information below</h5>
-        <div>
-            <div></div>
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="/images/winecloseup.jpg" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1>Wine</h1>
+        <p>Full-bodied? Sweet and spicy? Floral and aromatic? Whatever your taste, add your favs today!</p>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
 
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p style="font-family: Verdana, Geneva, sans-serif; font-size: 32px">Enter the information of your favorite wines below!</p>
+      </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+      <div id="centered-div" class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title">Wine</h2>
+            <p class="card-text">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  
+                </div>
+                <input type="text" class="form-control" placeholder="Name" aria-label="" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  
+                </div>
+                <input type="text" class="form-control" placeholder="Type" aria-label="" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  
+                </div>
+                <input type="text" class="form-control" placeholder="Date" aria-label="" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rating</button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">1</a>
+                      <a class="dropdown-item" href="#">2</a>
+                      <a class="dropdown-item" href="#">3</a>
+                      <a class="dropdown-item" href="#">4</a>
+                      <a class="dropdown-item" href="#">5</a>
+                      <a class="dropdown-item" href="#">6</a>
+                      <a class="dropdown-item" href="#">7</a>
+                      <a class="dropdown-item" href="#">8</a>
+                      <a class="dropdown-item" href="#">9</a>
+                      <a class="dropdown-item" href="#">10</a>
+                     
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                </div>
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="wine" class="btn btn-primary btn-sm">Add Entry</a>
+          </div>
         </div>
+      </div>
+
 
     </div>
-   
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
 
   <!-- Footer -->
-  <footer id="footer" class="py-5 bg-dark">
+  <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
     </div>
+    <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
 </body>
 
 </html>
-
