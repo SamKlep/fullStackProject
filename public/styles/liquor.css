@@ -35,7 +35,7 @@
   }
   
   h1 {
-    color: rgb(176, 116, 44);
+    color: rgb(90, 199, 172);
   }
   
   .card {
@@ -53,6 +53,6 @@
   #whiskey-image {
       display: inline-block;
       align-content: space-around; 
-      height:300px;
+      height:auto;
       width: auto;
   }
