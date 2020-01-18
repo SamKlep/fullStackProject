@@ -1,4 +1,14 @@
 body {
-    background: rgb(63,94,251);
-    background: linear-gradient( rgb(245, 245, 245) 0%, rgba(252,70,107,1) 100%);
+  background: rgb(136, 88, 28);
+  background: linear-gradient( #ffdcb8 0%, #c77284 100%);
+}
+
+  #logo {
+    width: 100px;
+    height: 60px;
   }
+
+  #link:hover {
+    color: rgb(255, 217, 0);
+  }
+
