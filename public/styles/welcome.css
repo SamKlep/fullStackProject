@@ -6,7 +6,7 @@
 
   body {
     background: rgb(136, 88, 28);
-    background: linear-gradient( rgb(254, 243, 231) 0%, rgb(252, 160, 47) 100%);
+    background: linear-gradient( #ffdcb8 0%, #c77284 100%);
   }
 
   .wrapper {
