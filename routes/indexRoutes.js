@@ -2,7 +2,7 @@
 ///////////////////////////////////////////////////
 
 const express = require('express');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = require('express').Router();
 const Wine = require('../models').Wine;
@@ -12,23 +12,23 @@ const User = require('../models').User;
 //Create router for signup or register new user/////
 ///////////////////////////////////////////////////
 
-router.post('/signup', function(req, res) {
-    console.log(req.body);
-    if (!req.body.username || !req.body.password) {
-      res.status(400).send({msg: 'Please pass username and password.'})
-    } else {
-      User
-        .create({
-          username: req.body.username,
-          password: req.body.password
-        })
-        .then((user) => res.status(201).send(user))
-        .catch((error) => {
-          console.log(error);
-          res.status(400).send(error);
-        });
-    }
-  });
+// router.post('/register', function(req, res) {
+//     console.log(req.body);
+//     if (!req.body.username || !req.body.password) {
+//       res.status(400).send({msg: 'Please pass username and password.'})
+//     } else {
+//       User
+//         .create({
+//           username: req.body.username,
+//           password: req.body.password
+//         })
+//         .then((user) => res.status(201).send(user))
+//         .catch((error) => {
+//           console.log(error);
+//           res.status(400).send(error);
+//         });
+//     }
+//   });
 
 ///Create router for sigin or log in with username and password///////////////////////////////////////////
 
@@ -45,12 +45,12 @@ router.post('/signup', function(req, res) {
   });
 
 // Route for Google Authentication
-router.get('/google',passport.authenticate('google', {
+router.get('/auth/google',passport.authenticate('google', {
   scope: ['profile']
 }));
 
 // Callback Route for Google to redirect
-router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+router.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
   res.send('You reached the callback URI');
 });
   
