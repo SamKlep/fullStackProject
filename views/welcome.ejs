@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title></title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Custom styles -->
+  <link href="/styles/modern-business.css" rel="stylesheet">
+  <link href="/styles/welcome.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        
+      <a class="navbar-brand" href="welcome.ejs"><img id="logo" src="/images/tastingboardlogo1.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a id="link" class="nav-link" href="welcome.ejs">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="link" class="nav-link" href="wine.ejs">Wine</a>
+          </li>
+          <li class="nav-item">
+            <a id="link" class="nav-link" href="beer.ejs">Beer</a>
+          </li>
+          <li class="nav-item">
+            <a id="link" class="nav-link" href="liquor.ejs">Liquor</a>
+          </li>
+            <li class="nav-item">
+                <a id="link" class="nav-link" href="index.ejs">Logout</a>
+              </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One -->
+        <div class="carousel-item active" style="background-image: url('/images/wine.jpeg')">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <!-- Slide Two -->
+        <div class="carousel-item" style="background-image: url('/images/beers.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <!-- Slide Three -->
+        <div class="carousel-item" style="background-image: url('/images/liquor.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+    
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="header-text">
+    <h1 class="my-4"><strong>Welcome User!</strong></h1>
+      <h5>Use the links below to add drinks to your own favorites list!</h5>
+    </div>
+
+    <br>
+
+    <!-- Drinks forms -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div id="box" class="card h-100">
+          <h4 id='header-color' class="card-header">Wine</h4>
+          <div id="card-body1" class="card-body">
+            <p class="card-text">Full-bodied? Sweet and spicy? Floral and aromatic? Whatever your taste, add your favs today!</p>
+          </div>
+          <div id='header-color' class="card-footer">
+            <a href="wine.ejs" class="btn btn-primary">Add drink!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div id="box" class="card h-100">
+          <h4 id='header-color' class="card-header">Beer</h4>
+          <div id="card-body2" class="card-body">
+            <p style="color: rgb(80, 80, 80);" class="card-text">Barley, wheat, rye, corn, rice, hops, water and fermented yeast-- add your favorite beers!</p>
+          </div>
+          <div id='header-color' class="card-footer">
+            <a href="beer.ejs" class="btn btn-primary">Add drink!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div id="box" class="card h-100">
+          <h4 id='header-color' class="card-header">Liquor</h4>
+          <div id="card-body3" class="card-body">
+            <p class="card-text">Gin. Vodka. Rum. Whiskey. Tequila. Brandy. Raise your spirits and add your favorite concoction.</p>
+          </div>
+          <div id='header-color' class="card-footer">
+            <a href="liquor.ejs" class="btn btn-primary">Add drink!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+      <br>
+      <br>
+
+  <!-- Footer -->
+  <footer id="footer" class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
