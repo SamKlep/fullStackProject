@@ -134,6 +134,11 @@ app.get("/wine", function(req, res) {
     res.render('liquor');
   })
 
+  app.get("/myboard", function(req, res) { 
+    console.log('this is my tasting board');
+    res.render('myboard');
+  })
+
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
     failureRedirect: '/index'
