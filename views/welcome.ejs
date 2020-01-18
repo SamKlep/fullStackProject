@@ -35,21 +35,21 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a id="link" class="nav-link" href="#">Home
+            <a id="link" class="nav-link" href="welcome.ejs">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="#">Wine</a>
+            <a id="link" class="nav-link" href="wine.ejs">Wine</a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="#">Beer</a>
+            <a id="link" class="nav-link" href="beer.ejs">Beer</a>
           </li>
           <li class="nav-item">
-            <a id="link" class="nav-link" href="#">Liquor</a>
+            <a id="link" class="nav-link" href="liquor.ejs">Liquor</a>
           </li>
             <li class="nav-item">
-                <a id="link" class="nav-link" href="#">Logout</a>
+                <a id="link" class="nav-link" href="index.ejs">Logout</a>
               </li>
         </ul>
       </div>
@@ -90,19 +90,24 @@
       </a>
     </div>
   </header>
-
+    
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome User!</h1>
+    <div class="header-text">
+    <h1 class="my-4"><strong>Welcome User!</strong></h1>
+      <h5>Use the links below to add drinks to your own favorites list!</h5>
+    </div>
+
+    <br>
 
     <!-- Drinks forms -->
     <div class="row">
       <div class="col-lg-4 mb-4">
-        <div class="card h-100">
+        <div id="box" class="card h-100">
           <h4 id='header-color' class="card-header">Wine</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          <div id="card-body1" class="card-body">
+            <p class="card-text">Full-bodied? Sweet and spicy? Floral and aromatic? Whatever your taste, add your favs today!</p>
           </div>
           <div id='header-color' class="card-footer">
             <a href="#" class="btn btn-primary">Add drink!</a>
@@ -110,10 +115,10 @@
         </div>
       </div>
       <div class="col-lg-4 mb-4">
-        <div class="card h-100">
+        <div id="box" class="card h-100">
           <h4 id='header-color' class="card-header">Beer</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
+          <div id="card-body2" class="card-body">
+            <p style="color: rgb(80, 80, 80);" class="card-text">Barley, wheat, rye, corn, rice, hops, water and fermented yeast-- add your favorite beers!</p>
           </div>
           <div id='header-color' class="card-footer">
             <a href="#" class="btn btn-primary">Add drink!</a>
@@ -121,10 +126,10 @@
         </div>
       </div>
       <div class="col-lg-4 mb-4">
-        <div class="card h-100">
+        <div id="box" class="card h-100">
           <h4 id='header-color' class="card-header">Liquor</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          <div id="card-body3" class="card-body">
+            <p class="card-text">Gin. Vodka. Rum. Whiskey. Tequila. Brandy. Raise your spirits and add your favorite concoction.</p>
           </div>
           <div id='header-color' class="card-footer">
             <a href="#" class="btn btn-primary">Add drink!</a>
@@ -133,6 +138,9 @@
       </div>
     </div>
    
+      <br>
+      <br>
+
   <!-- Footer -->
   <footer id="footer" class="py-5 bg-dark">
     <div class="container">
