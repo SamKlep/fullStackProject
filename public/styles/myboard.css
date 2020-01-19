@@ -6,7 +6,7 @@
 
   body {
     background: rgb(255, 255, 255);
-    background: linear-gradient( #c8e2e6 0%, #78ffff 100%);
+    background: linear-gradient( #e8e8e8 0%, #78ffff 100%);
   }
 
 
@@ -54,7 +54,7 @@ h4 {
 }
 
 p {
-  color: lightgrey;
+  color: rgb(58, 57, 57);
   font-family: Arial, Helvetica, sans-serif;
 }
 
