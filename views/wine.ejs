@@ -79,53 +79,28 @@
           <div class="card-body">
             <h2 class="card-title">Wine</h2>
             <p class="card-text">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
+                <div class='form'>
+                  <h4>Enter your description below.</h4>
+  
+                  <form action="/wine" method="post">
+                    Name:<br>
+                    <input type="text" name="name">
+                    <br>
+                    Type:<br>
+                    <input type="text" name="type">
+                    <br>
+                    Date:<br>
+                    <input type="text" name="date">
+                    <br>
+                    Description:<br>
+                    <input type="text" name="description">
+                    <br>
+                    Rating:<br>
+                    <input type="text" name="rating">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                  </form>
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Type" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Date" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rating</button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">1</a>
-                      <a class="dropdown-item" href="#">2</a>
-                      <a class="dropdown-item" href="#">3</a>
-                      <a class="dropdown-item" href="#">4</a>
-                      <a class="dropdown-item" href="#">5</a>
-                      <a class="dropdown-item" href="#">6</a>
-                      <a class="dropdown-item" href="#">7</a>
-                      <a class="dropdown-item" href="#">8</a>
-                      <a class="dropdown-item" href="#">9</a>
-                      <a class="dropdown-item" href="#">10</a>
-                     
-                    </div>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                </div>
-            </p>
-          </div>
-          <div class="card-footer">
-            <a href="wine" class="btn btn-primary btn-sm">Add Entry</a>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
     <!-- /.row -->
 
   </div>

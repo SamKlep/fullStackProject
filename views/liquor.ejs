@@ -79,47 +79,28 @@
           <div class="card-body">
             <p style="font-size: 40px;text-align: center" class="card-title">Liquor</p>
             <p class="card-text">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
+                <div class='form'>
+                  <h4>Enter your description below.</h4>
+  
+                  <form action="/liquor" method="post">
+                    Name:<br>
+                    <input type="text" name="name">
+                    <br>
+                    Type:<br>
+                    <input type="text" name="type">
+                    <br>
+                    Date:<br>
+                    <input type="text" name="date">
+                    <br>
+                    Description:<br>
+                    <input type="text" name="description">
+                    <br>
+                    Rating:<br>
+                    <input type="text" name="rating">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                  </form>
                 </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Type" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Date" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>Rating...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="1">4</option>
-                    <option value="2">5</option>
-                    <option value="3">6</option>
-                    <option value="3">7</option>
-                    <option value="2">8</option>
-                    <option value="3">9</option>
-                    <option value="3">10</option>
-                  </select>
-                </div>
-                </p>
-          <div class="card-footer">
-            <a href="liquor" class="btn btn-primary btn-sm">Add Entry</a>
-          </div>
-        </div>
-      </div>
 
 
     </div>

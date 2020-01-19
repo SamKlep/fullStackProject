@@ -29,11 +29,11 @@ const db = pgp(config);
 
 // THIS IS A TEST
 const initalizePassport = require('./passport-config')
-initalizePassport (
+initalizePassport(
     passport,
     email =>
         users.find(user => users.email === inputEmail),
-    id => 
+    id =>
         users.find(user => users.password === inputPassword)
 );
 
@@ -41,7 +41,7 @@ initalizePassport (
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -62,6 +62,9 @@ app.get('/', (req, res) => {
     console.log("hello");
     res.render('index');
 })
+
+
+
 
 /////////////////LOGIN PAGE///////////////////
 
@@ -97,47 +100,47 @@ app.post('/register', function (req, res) {
         email: req.body.inputEmail,
         password: req.body.inputPassword
     })
-    .then(function (user) {
-        console.log(user)
-    });
+        .then(function (user) {
+            console.log(user)
+        });
 });
-    // try {
-    //     const hashedPassword = await bcrypt.hash(req.body.inputPassword, 10)
-    //     users.push({
-    //         email: req.body.inputEmail,
-    //         password: hashedPassword
-    //     })
-    //     res.redirect('/login')
-    // } 
-    // catch {
-    //     res.redirect('/register')
+// try {
+//     const hashedPassword = await bcrypt.hash(req.body.inputPassword, 10)
+//     users.push({
+//         email: req.body.inputEmail,
+//         password: hashedPassword
+//     })
+//     res.redirect('/login')
+// } 
+// catch {
+//     res.redirect('/register')
 
-
-//////////Express Routes////////////////////////
-
+////////////////////////////////////////////
+//////////Express Routes////////////////////
+////////////////////////////////////////////
 app.get('/index', (req, res) => {
     res.render('index')
 })
 
-app.get("/wine", function(req, res) { 
+app.get("/wine", function (req, res) {
     console.log('wines for you')
     res.render('wine');
-  })
+})
 
-  app.get("/beer", function(req, res) { 
+app.get("/beer", function (req, res) {
     console.log('im beer');
     res.render('beer');
-  })
+})
 
-  app.get("/liquor", function(req, res) { 
+app.get("/liquor", function (req, res) {
     console.log('im fancy liquor');
     res.render('liquor');
-  })
+})
 
-  app.get("/myboard", function(req, res) { 
+app.get("/myboard", function (req, res) {
     console.log('this is my tasting board');
     res.render('myboard');
-  })
+})
 
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
@@ -163,7 +166,7 @@ app.get("/welcome", function (req, response) {
 app.get("/register", checkNotAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
-    res.render('register') 
+    res.render('register')
 });
 
 ////////////////LOG OUT REDIRECT//////////////////////
@@ -173,33 +176,45 @@ app.delete('/logout', (req, res) => {
     res.redirect('/login')
 })
 
-//////////////////////////////////////
+//////////////Sequelize////////////////////
+////////////Actions///////////////////////
+//////////////////////////////////////////
 
 app.post("/wine", function (req, response) {
-    console.log('Im here');
-    response.send("another item");
+    console.log('Creating Entry');
+    console.log(req.body);
+    models.wine.create({ name: 'Cabernet Sauvignon', type: 'Red', date: '2020/01/10', description: 'Dry and floral', rating: '9' })
+        .then(function (wine) {
+            console.log(wine);
+            response.send("new wine entry created with id: " + wine.id);
+        });
 });
 
 app.post("/beer", function (req, response) {
-    console.log('Im here');
-    response.send("another item"); 
+    console.log('Creating Entry');
+    console.log(req.body);
+    models.beer.create({ name: 'Hopadillo', type: 'IPA', date: '2020/01/10', description: 'Bold, refreshing', rating: '8' })
+        .then(function (beer) {
+            console.log(beer);
+            response.send("new beer entry created with id: " + beer.id);
+        });
 });
 
-////////////////////////////////////////
-
-app.put("/drinks", function (req, response) {
-    console.log('Im here');
-    response.send("a third item");
-});
-
-// DELETE single owner
-app.delete("/drinks", function (req, response) {
-    console.log('Im here');
-    response.send("item deleted");
+app.post("/liquor", function (req, response) {
+    console.log('Creating Entry');
+    console.log(req.body);
+    models.liquor.create({ name: 'Tangueray', type: 'Gin', date: '2020/01/10', description: 'Mild yet refreshing', rating: '6' })
+        .then(function (liquor) {
+            console.log(liquor);
+            response.send("new liquor entry created with id: " + liquor.id);
+        });
 });
 
 
-// THIS FUNCTION CHECKS FOR AUTHENTICATION
+////////////////////////////////////////////
+// THIS FUNCTION CHECKS FOR AUTHENTICATION//
+////////////////////////////////////////////
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
@@ -207,7 +222,9 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/login')
 }
 
-// THIS FUNCTION KEEPS AUTHENTICATED USERS FROM GOING TO PAGES THEY DONT NEED TO
+///////////////////////////////////////////////////////
+///THIS FUNCTION KEEPS AUTHENTICATED USERS FROM GOING/////TO PAGES THEY DONT NEED TO//////////////////////////
+
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
