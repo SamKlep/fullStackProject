@@ -180,35 +180,54 @@ app.delete('/logout', (req, res) => {
 ////////////Actions///////////////////////
 //////////////////////////////////////////
 
-app.post("/wine", function (req, response) {
-    console.log('Creating Entry');
-    console.log(req.body);
-    models.wine.create({ name: 'Cabernet Sauvignon', type: 'Red', date: '2020/01/10', description: 'Dry and floral', rating: '9' })
-        .then(function (wine) {
-            console.log(wine);
-            response.send("new wine entry created with id: " + wine.id);
-        });
-});
+app.post("/wine", function (req, response){
+    models.wine.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('wine');
+      });
+  });
 
 app.post("/beer", function (req, response) {
-    console.log('Creating Entry');
-    console.log(req.body);
-    models.beer.create({ name: 'Hopadillo', type: 'IPA', date: '2020/01/10', description: 'Bold, refreshing', rating: '8' })
-        .then(function (beer) {
-            console.log(beer);
-            response.send("new beer entry created with id: " + beer.id);
-        });
-});
+    models.beer.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('beer');
+      });
+  });
+
+// app.post("/beer", function (req, response) {
+//     console.log('Creating Entry');
+//     console.log(req.body);
+//     models.beer.create({ name: 'Hopadillo', type: 'IPA', date: '2020/01/10', description: 'Bold, refreshing', rating: '8' })
+//         .then(function (beer) {
+//             console.log(beer);
+//             response.send("new beer entry created with id: " + beer.id);
+//         });
+// });
 
 app.post("/liquor", function (req, response) {
-    console.log('Creating Entry');
-    console.log(req.body);
-    models.liquor.create({ name: 'Tangueray', type: 'Gin', date: '2020/01/10', description: 'Mild yet refreshing', rating: '6' })
-        .then(function (liquor) {
-            console.log(liquor);
-            response.send("new liquor entry created with id: " + liquor.id);
-        });
-});
+    models.liquor.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('liquor');
+      });
+  });
 
 
 ////////////////////////////////////////////
