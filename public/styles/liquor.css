@@ -68,3 +68,9 @@
   .form {
     text-align: center;
   }
+
+  .card-title {
+    color: rgb(38, 51, 148);
+    text-align: center;
+    font-size: 60px;
+  }
