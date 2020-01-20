@@ -59,6 +59,8 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 });
 
+
+
 // try {
 //     if (await bcrypt.compare(req.body.inputEmail, user.email))
 //     const hashedPassword = await bcrypt.hash(req.body.inputPassword, 10);
@@ -89,6 +91,8 @@ app.post('/register', function (req, res) {
         // console.log(user)
     });
 });
+
+
 
 //////////Express Routes////////////////////////
 

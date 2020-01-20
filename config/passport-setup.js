@@ -111,3 +111,9 @@ passport.use(new LocalStrategy (
       });
     }
 ));
+
+app.post('/',
+  passport.authenticate('local', { failureRedirect: '/error' }),
+  function(req, res) {
+    res.redirect('/welcome');
+  });
