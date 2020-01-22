@@ -1,18 +1,40 @@
-const passport = require('passport');
-const googleStrategy = require('passport-google-oauth20');
-const LocalStrategy = require('passport-local').Strategy;
-const keys = require('./keys');
-const models = require('../models');
+// const passport = require('passport');
+// const googleStrategy = require('passport-google-oauth20');
+// const LocalStrategy = require('passport-local').Strategy;
+// const express = require('express');
+// const app = express();
+// const keys = require('./keys');
+// const models = require('../models');
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
+// passport.serializeUser((user, done) => {
+//     done(null, user.id);
+// });
   
-passport.deserializeUser((id, done) => {
-    models.user.findByPk(id).then((user) => {
-      done(null, user);
-    });
-});
+// passport.deserializeUser((id, done) => {
+//     models.user.findByPk(id).then((user) => {
+//       done(null, user);
+//     });
+// });
+
+// REGISTRATION
+
+// app.get('/register', (req, res) => {
+//     res.render('register.ejs')
+// })
+
+// app.post('/register', function (req, res) {
+//     console.log("This post thing is working")
+//     console.log(req.body)
+//     models.user.create({
+//         email: req.body.inputEmail,
+//         password: req.body.inputPassword
+//     })
+//     .then(function (user) {
+//         res.redirect("index")
+//         console.log(user)
+//     });
+// });
+
 
 // passport.use(new googleStrategy({
 //     //options for google strategy
@@ -92,28 +114,30 @@ passport.deserializeUser((id, done) => {
 //         }));
 // }};
 
-passport.use(new LocalStrategy (
-    (username, password, done) =>{
-      models.user.findOne({
-        where: {
-            username: username
-        }
-      }).then((user) =>{
-        if (!user) {
-          return done(null, false);
-        }
-        if (user.password != encryptionPassword(password)) {
-          return done(null, false);
-        }
-        return done(null, user);
-      }).catch((err)=> {
-        return done(err);
-      });
-    }
-));
+// LOGIN
 
-app.post('/',
-  passport.authenticate('local', { failureRedirect: '/error' }),
-  function(req, res) {
-    res.redirect('/welcome');
-  });
+// passport.use(new LocalStrategy (
+//     (username, password, done) =>{
+//       models.user.findOne({
+//         where: {
+//             username: username
+//         }
+//       }).then((user) =>{
+//         if (!user) {
+//           return done(null, false);
+//         }
+//         if (user.password != encryptionPassword(password)) {
+//           return done(null, false);
+//         }
+//         return done(null, user);
+//       }).catch((err)=> {
+//         return done(err);
+//       });
+//     }
+// ));
+
+// app.post('/',
+//   passport.authenticate('local', { failureRedirect: '/error' }),
+//   function(req, res) {
+//     res.redirect('/welcome');
+// });

@@ -8,14 +8,28 @@ const flash = require('express-flash');
 const promise = require('bluebird');
 const bcrypt = require('bcrypt');
 const passportSetup = require('./config/passport-setup');
+const LocalStrategy = require('passport-local').Strategy;
 const routes = require('./routes/indexRoutes');
 const keys = require('./config/keys')
+const pbkdf2 = require('pbkdf2');
+require('dotenv').config();
+
+var salt = process.env.SALT_KEY;
 
 app.use(session({
     secret: 'redwine',
     resave: false,
     saveUninitialized: false
 }));
+
+function encryptionPassword(password) {
+    var key = pbkdf2.pbkdf2Sync(
+        password, salt, 36000, 256, 'sha256'
+    );
+    console.log(key)
+    var hash = key.toString('hex');
+    return hash;
+}
 
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
@@ -47,10 +61,16 @@ app.use(routes);
 app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
 
-// HOMEROUTE
-
-app.get('/', (req, res) => {
-    res.render('index');
+passport.serializeUser((user, done) => {
+    console.log("serialize user")
+    done(null, user.id);
+});
+  
+passport.deserializeUser((id, done) => {
+    console.log("deseralize user")
+    models.user.findByPk(id).then((user) => {
+      done(null, user.id);
+    });
 });
 
 /////////////////LOGIN PAGE///////////////////
@@ -59,32 +79,48 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 });
 
+passport.use(new LocalStrategy (
+    (username, password, done) =>{
+      models.user.findOne({
+        where: {
+            username: username
+        },
+      }).then((user) =>{
+        if (!user) {
+        console.log("one")
+          return done(null, false);
+        }
+        if (user.password != encryptionPassword(password)) {
+        console.log("two")
+          return done(null, false);
+        }
+        console.log("three")
+        return done(null, user);
+      }).catch((error)=> {
+          console.log("four")
+        return done(error);
+      });
+    }
+));
 
+app.post('/index',
+  passport.authenticate('local', { failureRedirect: '/error' }),
+  function(req, res) {
+    res.redirect('/welcome');
+});
 
-// try {
-//     if (await bcrypt.compare(req.body.inputEmail, user.email))
-//     const hashedPassword = await bcrypt.hash(req.body.inputPassword, 10);
-//     users.push({
-//         email: req.body.inputEmail,
-//         password: hashedPassword
-//     })
-//     res.redirect('/login')
-// } 
-// catch {
-//     res.redirect('/register')
-
-/////////////////REGISTER PAGE///////////////////
+// /////////////////REGISTER PAGE///////////////////
 
 app.get('/register', (req, res) => {
     res.render('register.ejs')
 })
 
 app.post('/register', function (req, res) {
-    console.log("This post thing is working")
+    // console.log("This post thing is working")
     console.log(req.body)
     models.user.create({
-        email: req.body.inputEmail,
-        password: req.body.inputPassword
+        password: encryptionPassword(req.body.password),
+        username: req.body.username,
     })
     .then(function (user) {
         res.redirect("index")
@@ -92,13 +128,11 @@ app.post('/register', function (req, res) {
     });
 });
 
-
-
 //////////Express Routes////////////////////////
 
-app.get("/", function(req, res) { 
-  res.render('index');
-})
+app.get('/', (req, res) => {
+    res.redirect('index');
+});
 
 app.get("/", function(req, res) { 
     res.render('wine');
@@ -112,20 +146,25 @@ app.get("/", function(req, res) {
     res.render('liquor');
 })
 
+app.get("/error", function(req,res) {
+    console.log("five")
+    res.render('error');
+})
+
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
     failureRedirect: '/index'
 }));
 
 // THIS IS A TEST
-const initalizePassport = require('./passport-config')
-initalizePassport (
-    passport,
-    email =>
-        users.find(user => users.email === inputEmail),
-    id => 
-        users.find(user => users.password === inputPassword)
-);
+// const initalizePassport = require('./passport-config')
+// initalizePassport (
+//     passport,
+//     email =>
+//         users.find(user => users.email === username),
+//     id => 
+//         users.find(user => users.password === inputPassword)
+// );
 
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
@@ -134,11 +173,10 @@ app.get("/welcome", checkAuthenticated, function (req, response) {
     response.render("welcome");
 });
 
-app.post("/logIn",
+app.post("/welcome",
     passport.authenticate('local', { failureRedirect: '/error'}), 
-    function (req, response) {
-        console.log('Im here @ log in');
-        res.send("I am here now.")
+    function (req, res) {
+        res.render("welcome")
 });
 
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
@@ -152,8 +190,8 @@ app.get("/register", checkNotAuthenticated, function (req, response) {
 ////////////////LOG OUT REDIRECT//////////////////////
 
 app.delete('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/login')
+    req.logOut();
+    res.redirect('/welcome')
 })
 
 //////////////////////////////////////
