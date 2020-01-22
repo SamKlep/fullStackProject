@@ -6,11 +6,11 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-const bcrypt = require('bcrypt');
 const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
+const googleStrategy = require('passport-google-oauth20');
 const routes = require('./routes/indexRoutes');
-const keys = require('./config/keys')
+const keys = require('./config/keys');
 const pbkdf2 = require('pbkdf2');
 require('dotenv').config();
 
@@ -206,6 +206,36 @@ app.post("/beer", function (req, response) {
     response.send("another item"); 
 });
 
+// GOOGLE LOGIN
+
+// passport.use(
+//     new googleStrategy({
+//         callbackURL: '/auth/google/redirect',
+//         clientID: keys.google.clientID,
+//         clientSecret: keys.google.clientSecret
+//     },
+//     (accessToken, refreshToken, profile, done) => {
+//     console.log(profile)
+//     models.user.findOne({googleId:profile.id}).then((currentUser) => {
+//         if(currentUser){
+//             console.log('User is: ', currentUser);
+//         } else {
+//             new user({
+//                 email: profile.email,
+//                 googleId: profile.id
+//             })
+//         }
+//         }
+//     }),
+//     models.user.findOrCreate ({
+//         where: {
+//             googleid: username,
+//             password: password
+//         }
+//     })
+// }));
+
+
 ////////////////////////////////////////
 
 app.put("/drinks", function (req, response) {
@@ -235,6 +265,10 @@ function checkNotAuthenticated(req, res, next) {
     }
     return res.redirect('/index')
 }
+
+app.use(function(req,res){
+    res.status(404).render('error');
+});
 
 app.listen(8080, function () {
     console.log('Tasting Board app listening on port 8080!');
