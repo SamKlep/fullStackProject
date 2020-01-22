@@ -41,6 +41,9 @@
             <a id="link" class="nav-link" href="liquor">Liquor</a>
           </li>
           <li class="nav-item">
+            <a id="link" class="nav-link" href="myboard">My Board</a>
+          </li>
+          <li class="nav-item">
             <a id="link" class="nav-link" href="index">Logout</a>
           </li>
         </ul>
@@ -53,9 +56,9 @@
 
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
-        <div class="col-lg-7">
-          <img class="img-fluid rounded mb-4 mb-lg-0" src="/images/whiskeycloseup.jpg" alt="">
-        </div>
+      <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="/images/liquorcloseup.jpg" alt="">
+      </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-5">
         <h1>Liquor</h1>
@@ -65,87 +68,73 @@
     </div>
     <!-- /.row -->
 
-    <!-- Call to Action Well -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-      <div class="card-body">
-        <p style="font-family: Verdana, Geneva, sans-serif; font-size: 32px">Enter the information of your favorite cocktails below!</p>
-      </div>
-    </div>
 
     <!-- Content Row -->
     <div class="row">
       <div id="centered-div" class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <p style="font-size: 40px;text-align: center" class="card-title">Liquor</p>
+            <p class="card-title">Liquor</p>
             <p class="card-text">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Name" aria-label="" aria-describedby="basic-addon1">
+              <div class='form'>
+                <h4>Enter your description below.</h4>
+
+                <form action="/liquor" method="post">
+                  Name:<br>
+                  <input type="text" name="name">
+                  <br>
+                  Type:<br>
+                  <input type="text" name="type">
+                  <br>
+                  Date:<br>
+                  <input type="text" name="date">
+                  <br>
+                  Description:<br>
+                  <input type="text" name="description">
+                  <br>
+                  Rating:<br>
+                  <input type="text" name="rating">
+                  <br><br>
+                  <input type="submit" value="Submit">
+                </form>
               </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Type" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  
-                </div>
-                <input type="text" class="form-control" placeholder="Date" aria-label="" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>Rating...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="1">4</option>
-                    <option value="2">5</option>
-                    <option value="3">6</option>
-                    <option value="3">7</option>
-                    <option value="2">8</option>
-                    <option value="3">9</option>
-                    <option value="3">10</option>
-                  </select>
-                </div>
-                </p>
-          <div class="card-footer">
-            <a href="liquor" class="btn btn-primary btn-sm">Add Entry</a>
+
+
           </div>
+          <!-- /.row -->
+
         </div>
-      </div>
+        <!-- /.container -->
 
+          <!-- Footer Links -->
 
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Tasting Board - 
+      <a href="mailto:someone@gmail.com"> Email</a>
     </div>
-    <!-- /.row -->
-
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
-    </div>
-    <!-- /.container -->
+    <!-- Copyright -->
+  
   </footer>
+  <!-- Footer -->
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+        <!-- Footer
+        <footer class="py-5 bg-dark">
+          <div id="container2">
+            <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
+          </div>
+           /.container
+        </footer> -->
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
 
 </body>
 

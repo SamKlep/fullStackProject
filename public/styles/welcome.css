@@ -40,15 +40,26 @@ h4 {
 
 
 #card-body1 {
-  background-image: url("/images/winecloseup.jpg");
+  background-image: url("/images/winevector.jpg");
+  background-repeat: no-repeat, repeat;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
 }
 
 #card-body2 {
-  background-image: url("/images/beercloseup.jpg");
+  background-image: url("/images/beervector.png");
+  background-repeat: no-repeat, repeat;
+    background-size: cover;
+    height: 300px;
+    width: 300px;
 }
 
 #card-body3 {
-  background-image: url("/images/whiskeycloseup.jpg");
+  background-image: url("/images/liquorvector.jpg");
+  background-size: cover;
+  height: 300px;
+  width: 300px;
 }
 
 p {

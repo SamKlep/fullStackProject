@@ -5,8 +5,9 @@
 }
 
 body {
-  background: rgb(136, 88, 28);
-  background: linear-gradient( #ffdcb8 0%, #c77284 100%);
+  background-image: url("/images/beercloseup2.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
 }
 
   #logo {
@@ -32,10 +33,23 @@ h2 {
 p {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 26px;
+  color: rgb(113, 113, 28);
 }
 
 h1 {
-  color: rgb(176, 116, 44);
+  color: rgb(46, 45, 43);
+}
+
+h4 {
+  color: rgb(164, 112, 50);
+  text-align: center;
+
+}
+
+.card-title {
+  color: rgb(184, 122, 46);
+  text-align: center;
+  font-size: 60px;
 }
 
 .card {
@@ -48,4 +62,8 @@ img {
 
 #centered-div {
   margin: 0 auto;
+}
+
+.form {
+  text-align: center;
 }
