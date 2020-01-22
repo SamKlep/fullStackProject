@@ -52,7 +52,7 @@ const db = pgp(config);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -134,7 +134,8 @@ app.get('/', (req, res) => {
     res.redirect('index');
 });
 
-app.get("/", function(req, res) { 
+app.get("/wine", function (req, res) {
+    console.log('wines for you')
     res.render('wine');
 })
 
@@ -149,6 +150,7 @@ app.get("/", function(req, res) {
 app.get("/error", function(req,res) {
     console.log("five")
     res.render('error');
+
 })
 
 app.post('/index', passport.authenticate('local', {
@@ -184,7 +186,7 @@ app.post("/welcome",
 app.get("/register", checkNotAuthenticated, function (req, response) {
     console.log('Im here');
     response.send("new item");
-    res.render('register') 
+    res.render('register')
 });
 
 ////////////////LOG OUT REDIRECT//////////////////////
@@ -194,33 +196,64 @@ app.delete('/logout', (req, res) => {
     res.redirect('/welcome')
 })
 
-//////////////////////////////////////
+//////////////Sequelize////////////////////
+////////////Actions///////////////////////
+//////////////////////////////////////////
 
-app.post("/wine", function (req, response) {
-    console.log('Im here');
-    response.send("another item");
-});
+app.post("/wine", function (req, response){
+    models.wine.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('wine');
+      });
+  });
 
 app.post("/beer", function (req, response) {
-    console.log('Im here');
-    response.send("another item"); 
-});
+    models.beer.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('beer');
+      });
+  });
 
-////////////////////////////////////////
+// app.post("/beer", function (req, response) {
+//     console.log('Creating Entry');
+//     console.log(req.body);
+//     models.beer.create({ name: 'Hopadillo', type: 'IPA', date: '2020/01/10', description: 'Bold, refreshing', rating: '8' })
+//         .then(function (beer) {
+//             console.log(beer);
+//             response.send("new beer entry created with id: " + beer.id);
+//         });
+// });
 
-app.put("/drinks", function (req, response) {
-    console.log('Im here');
-    response.send("a third item");
-});
+app.post("/liquor", function (req, response) {
+    models.liquor.create({ 
+      name: req.body.name, 
+      type: req.body.type,
+      date: req.body.date,
+      description: req.body.description,
+      rating: req.body.rating
+    })
+      .then(function () {
+        response.render('liquor');
+      });
+  });
 
-// DELETE single owner
-app.delete("/drinks", function (req, response) {
-    console.log('Im here');
-    response.send("item deleted");
-});
 
+////////////////////////////////////////////
+// THIS FUNCTION CHECKS FOR AUTHENTICATION//
+////////////////////////////////////////////
 
-// THIS FUNCTION CHECKS FOR AUTHENTICATION
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
@@ -228,7 +261,9 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/welcome')
 }
 
-// THIS FUNCTION KEEPS AUTHENTICATED USERS FROM GOING TO PAGES THEY DONT NEED TO
+///////////////////////////////////////////////////////
+///THIS FUNCTION KEEPS AUTHENTICATED USERS FROM GOING/////TO PAGES THEY DONT NEED TO//////////////////////////
+
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()

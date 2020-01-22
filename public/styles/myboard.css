@@ -5,9 +5,11 @@
   */
 
   body {
-    background: rgb(136, 88, 28);
-    background: linear-gradient( #ffdcb8 0%, #c77284 100%);
+    background: rgb(102, 126, 135);
+    background: linear-gradient( #dedede 0%, #3e5757 100%);
+    padding-top: 40px;
   }
+
 
   .wrapper {
     margin: 0 auto;
@@ -20,6 +22,7 @@
 
 #footer {
   width: 100%;
+  position: fixed;
 }
 
 #link:hover {
@@ -34,41 +37,36 @@ h4 {
   color: rgb(120, 56, 56);
 }
 
+h2 {
+  color: rgba(255, 199, 14, 0.858);
+}
+
 #box {
     box-shadow: 0 36px 45px 0 rgba(0, 0, 0, 0.2), 0 36px 42px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 #card-body1 {
-  background-image: url("/images/winevector.jpg");
-  background-repeat: no-repeat, repeat;
-    background-size: cover;
-    height: 300px;
-    width: 300px;
+  background-image: url("/images/winecloseup.jpg");
 }
 
 #card-body2 {
-  background-image: url("/images/beervector.png");
-  background-repeat: no-repeat, repeat;
-    background-size: cover;
-    height: 300px;
-    width: 300px;
+  background-image: url("/images/beercloseup.jpg");
 }
 
 #card-body3 {
-  background-image: url("/images/liquorvector.jpg");
-  background-size: cover;
-  height: 300px;
-  width: 300px;
+  background-image: url("/images/whiskeycloseup.jpg");
 }
 
 p {
-  color: lightgrey;
+  color: rgb(52, 51, 51);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
   font-family: Impact, fantasy;
+  padding: auto;
+  margin: auto;
 }
 
 .header-text {
@@ -80,5 +78,9 @@ p {
   margin: 20px;
   text-align: center;
   font-size: 18px;
+}
+
+#color {
+  color: rgba(5, 47, 109, 0.858); 
 }
 
