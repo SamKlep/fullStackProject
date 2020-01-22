@@ -127,10 +127,10 @@ app.get("/wine", function (req, res) {
     res.render('wine');
 })
 
-// app.get("/beer", function (req, res) {
-//     console.log('im beer');
-//     res.render('beer');
-// })
+app.get("/beer", function (req, res) {
+    console.log('im beer');
+    res.render('beer');
+})
 
 app.get("/liquor", function (req, res) {
     console.log('im fancy liquor');
