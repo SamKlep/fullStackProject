@@ -127,10 +127,10 @@ app.get("/wine", function (req, res) {
     res.render('wine');
 })
 
-app.get("/beer", function (req, res) {
-    console.log('im beer');
-    res.render('beer');
-})
+// app.get("/beer", function (req, res) {
+//     console.log('im beer');
+//     res.render('beer');
+// })
 
 app.get("/liquor", function (req, res) {
     console.log('im fancy liquor');
@@ -260,7 +260,17 @@ app.post("/beer", function (req, response) {
         });
 });
 
-// DELETE /beer/:id
+/////////////get beer from database////////////
+
+app.get("/beer", function (req, response) {
+    console.log('beer');
+    models.beer.findAll().then(function (beer){
+      console.log('beer');
+      response.send('beer');
+    });
+  });
+
+//// DELETE /beer/:id ////////////////////////////
 app.delete("/beer:id", function (req, response) {
     models.beer.delete({ name: req.body.name,
         type: req.body.type,

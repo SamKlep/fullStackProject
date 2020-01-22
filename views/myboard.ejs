@@ -13,13 +13,59 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+   crossorigin="anonymous"></script>
 
   <!-- Custom styles -->
   <link href="/styles/modern-business.css" rel="stylesheet">
   <link href="/styles/myboard.css" rel="stylesheet">
 
+  <!-- <script>
+
+      // $(document).ready(function () {
+      //   requestAllWine();
+  
+      // function requestAllBeer() {
+      //   jQuery.get('/beer', function (data) {
+      //     console.log(data);
+      //     jQuery('#beer_entries').html(renderBeer(data));
+      //   });
+      // };
+  
+      // function renderBeer(data) {
+      //   console.log(data)
+      //   console.log(typeof data);
+        //let html = '<ol>';
+        // data.beer.forEach(element => {
+        //   html += `<li>${element.beer} <button class="delete-beer" onclick="deleteButton(${element.beer})" data-beer="${element.beer}">Delete beer</button></li>`;
+        // });
+        // html += '</ol>';
+        // return html;
+    //   };
+  
+  </script> -->
+
+  <script>
+      function showDrinks(str) {
+        var xhttp;    
+        if (str == "") {
+          document.getElementById("txtHint").innerHTML = "";
+          return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", str, true);
+        xhttp.send();
+      }
+      </script>
 
 </head>
+
 
 <body>
 
@@ -58,16 +104,33 @@
       </div>
     </div>
   </nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <form action=""> 
+      <select name="drinks" onchange="showDrinks(this.value)">
+      <option value="">Select an entry:</option>
+      <option value="wine">Wine</option>
+      <option value="beer ">Beer</option>
+      <option value="liquor">Liquor</option>
+      </select>
+      </form>
+      <br>
+      <div id="txtHint">User drink entries will be listed here...</div>
+      
+      
 
-
-  <main role="main" class="container">
+  <!-- <main role="main" class="container">
     <div class="jumbotron">
       <h1>My Board</h1>
       <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll,
         this navbar remains in its original position and moves with the rest of the page.</p>
-      <a class="btn btn-lg btn-primary" onclick="requestAllWine()" role="button">View Wine Entries</a>
+      <a class="btn btn-lg btn-primary" onclick="requestAllBeer()" role="button">View Wine Entries</a>
     </div>
-  </main>
+  </main> -->
 
 
 
@@ -88,34 +151,11 @@
          /.container -->
   </footer>
 
-  <script>
+  
 
-    $(document).ready(function () {
-      requestAllWine();
-
-      function requestAllWine() {
-        $.get('/wine', function (data) {
-          console.log(data);
-          $('#wine_entries').html(renderTodo(data));
-        });
-      };
-
-      function renderWine(data) {
-        let html = '<ol>';
-        data.forEach(element => {
-          html += `<li>${element.wine} <button class="delete-wine" onclick="deleteButton(${element.wine})" data-todoId="${element.wine}">Delete Wine</button></li>`;
-        });
-        html += '</ol>';
-        return html;
-      };
-</script>
- 
 
   <!-- Bootstrap core JavaScript -->
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-  crossorigin="anonymous"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
