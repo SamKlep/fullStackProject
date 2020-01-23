@@ -8,7 +8,7 @@ const flash = require('express-flash');
 const promise = require('bluebird');
 const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
-const googleStrategy = require('passport-google-oauth20');
+const GoogleStrategy = require('passport-google-oauth20');
 const routes = require('./routes/indexRoutes');
 const keys = require('./config/keys');
 const pbkdf2 = require('pbkdf2');
@@ -79,6 +79,8 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 });
 
+// LOCAL LOGIN
+
 passport.use(new LocalStrategy (
     (username, password, done) =>{
       models.user.findOne({
@@ -108,6 +110,37 @@ app.post('/index',
   function(req, res) {
     res.redirect('/welcome');
 });
+
+// GOOGLE LOGIN
+
+passport.use(new GoogleStrategy({
+    //options for google strategy
+    callbackURL: '/auth/google/redirect',
+    clientID: keys.google.clientID,
+    clientSecret: keys.google.clientSecret
+  }, (accessToken, refreshToken, profile, done) => {
+    //check if user already exists in db
+    models.user.findOne({
+      where: {
+        g_id: profile.id
+      }
+    }).then((currentUser) => {
+      if (currentUser) {
+        //already have user in db
+        console.log("the user exists in db as: " + profile.displayName);
+        done(null, currentUser);
+      } else {
+        models.user.create({
+          g_name: profile.displayName,
+          g_id: profile.id
+        }).then((newUser) => {
+          console.log("New User created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  }));
+  
 
 // /////////////////REGISTER PAGE///////////////////
 
