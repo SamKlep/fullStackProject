@@ -1,10 +1,11 @@
 'use strict';
-var bcrypt = require('bcrypt-nodejs');
+// var bcrypt = require('bcrypt-nodejs');
 
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    googleId: DataTypes.STRING
   }, {});
 
   // user.beforeSave((user, options) => {

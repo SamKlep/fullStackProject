@@ -6,11 +6,11 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-const bcrypt = require('bcrypt');
 const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
-const keys = require('./config/keys')
+const keys = require('./config/keys');
 const pbkdf2 = require('pbkdf2');
 require('dotenv').config();
 
@@ -79,6 +79,8 @@ app.get('/index', (req, res) => {
     res.render('index.ejs')
 });
 
+// LOCAL LOGIN
+
 passport.use(new LocalStrategy (
     (username, password, done) =>{
       models.user.findOne({
@@ -108,6 +110,38 @@ app.post('/index',
   function(req, res) {
     res.redirect('/welcome');
 });
+
+// GOOGLE LOGIN
+
+passport.use(new GoogleStrategy({
+    //options for google strategy
+    callbackURL: '/auth/google/redirect',
+    clientID: keys.google.clientID,
+    clientSecret: keys.google.clientSecret
+  }, (accessToken, refreshToken, profile, done) => {
+    //check if user already exists in db
+    console.log(profile)
+    models.user.findOne({
+      where: {
+        googleId: profile.id
+      }
+    }).then((currentUser) => {
+      if (currentUser) {
+        //already have user in db
+        console.log("the user exists in db as: " + profile.displayName);
+        done(null, currentUser);
+      } else {
+        models.user.create({
+          username: profile.displayName,
+          googleId: profile.id
+        }).then((newUser) => {
+          console.log("New User created: " + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  }));
+  
 
 // /////////////////REGISTER PAGE///////////////////
 
@@ -270,6 +304,10 @@ function checkNotAuthenticated(req, res, next) {
     }
     return res.redirect('/index')
 }
+
+app.use(function(req,res){
+    res.status(404).render('error');
+});
 
 app.listen(8080, function () {
     console.log('Tasting Board app listening on port 8080!');
