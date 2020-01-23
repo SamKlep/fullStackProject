@@ -51,7 +51,7 @@ router.get('/auth/google',passport.authenticate('google', {
 
 // Callback Route for Google to redirect
 router.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
-  res.send('You reached the callback URI');
+  res.redirect('/welcome');
 });
   
 ////Create secure router to get and post wine/beer/////

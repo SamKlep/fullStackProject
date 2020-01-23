@@ -8,7 +8,7 @@ const flash = require('express-flash');
 const promise = require('bluebird');
 const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth20');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
 const keys = require('./config/keys');
 const pbkdf2 = require('pbkdf2');
@@ -120,9 +120,10 @@ passport.use(new GoogleStrategy({
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
     //check if user already exists in db
+    console.log(profile)
     models.user.findOne({
       where: {
-        g_id: profile.id
+        googleId: profile.id
       }
     }).then((currentUser) => {
       if (currentUser) {
@@ -131,8 +132,8 @@ passport.use(new GoogleStrategy({
         done(null, currentUser);
       } else {
         models.user.create({
-          g_name: profile.displayName,
-          g_id: profile.id
+          username: profile.displayName,
+          googleId: profile.id
         }).then((newUser) => {
           console.log("New User created: " + newUser);
           done(null, newUser);
