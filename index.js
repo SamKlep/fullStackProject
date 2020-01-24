@@ -85,7 +85,7 @@ passport.use(new LocalStrategy (
     (username, password, done) =>{
       models.user.findOne({
         where: {
-            username: username
+            username: username,
         },
       }).then((user) =>{
         if (!user) {
@@ -109,6 +109,7 @@ app.post('/index',
   passport.authenticate('local', { failureRedirect: '/error' }),
   function(req, res) {
     res.redirect('/welcome');
+
 });
 
 // GOOGLE LOGIN
@@ -133,7 +134,8 @@ passport.use(new GoogleStrategy({
       } else {
         models.user.create({
           username: profile.displayName,
-          googleId: profile.id
+          googleId: profile.id,
+          nickname: profile.name.givenName
         }).then((newUser) => {
           console.log("New User created: " + newUser);
           done(null, newUser);
@@ -153,6 +155,7 @@ app.post('/register', function (req, res) {
     models.user.create({
         password: encryptionPassword(req.body.password),
         username: req.body.username,
+        nickname: req.body.nickname
     })
     .then(function (user) {
         res.redirect("index")
@@ -193,7 +196,8 @@ app.post('/index', passport.authenticate('local', {
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
 app.get("/welcome", checkAuthenticated, function (req, response) {
-    response.render("welcome");
+    response.render("welcome"),
+    {users: req.user};
 });
 
 app.post("/welcome",
