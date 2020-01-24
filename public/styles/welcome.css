@@ -6,11 +6,17 @@
 
   body {
     background: rgb(136, 88, 28);
-    background: linear-gradient( #ffdcb8 0%, #c77284 100%);
+    background: linear-gradient( rgba(252,70,107,1), rgba(63,94,251) 100%);
   }
 
   .wrapper {
     margin: 0 auto;
+}
+
+.card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
 }
 
 #logo {
