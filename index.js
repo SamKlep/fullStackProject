@@ -9,6 +9,7 @@ const promise = require('bluebird');
 const passportSetup = require('./config/passport-setup')
 const routes = require('./routes/indexRoutes')
 
+
 // PG-PROMISE INIT OPTIONS
 const initOptions = {
     promiseLib: promise,
@@ -55,6 +56,7 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
+
 
 // HOMEROUTE
 
@@ -140,6 +142,15 @@ app.get("/liquor", function (req, res) {
 app.get("/myboard", function (req, res) {
     console.log('this is my tasting board');
     res.render('myboard');
+})
+
+app.get('/myboard', function (req, res) {
+    db.beer.findAll()
+  .then((results) => {
+    results.forEach(function(index){
+    console.log(index.id, index.name);
+})
+  });
 })
 
 app.post('/index', passport.authenticate('local', {

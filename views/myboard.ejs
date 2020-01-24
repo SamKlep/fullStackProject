@@ -21,56 +21,15 @@
   <link href="/styles/modern-business.css" rel="stylesheet">
   <link href="/styles/myboard.css" rel="stylesheet">
 
-  <!-- <script>
-
-      // $(document).ready(function () {
-      //   requestAllWine();
   
-      // function requestAllBeer() {
-      //   jQuery.get('/beer', function (data) {
-      //     console.log(data);
-      //     jQuery('#beer_entries').html(renderBeer(data));
-      //   });
-      // };
-  
-      // function renderBeer(data) {
-      //   console.log(data)
-      //   console.log(typeof data);
-        //let html = '<ol>';
-        // data.beer.forEach(element => {
-        //   html += `<li>${element.beer} <button class="delete-beer" onclick="deleteButton(${element.beer})" data-beer="${element.beer}">Delete beer</button></li>`;
-        // });
-        // html += '</ol>';
-        // return html;
-    //   };
-  
-  </script> -->
-
-  <script>
-      function showDrinks(str) {
-        var xhttp;    
-        if (str == "") {
-          document.getElementById("txtHint").innerHTML = "";
-          return;
-        }
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("txtHint").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", str, true);
-        xhttp.send();
-      }
-      </script>
 
 </head>
 
-
-<body>
+<!-- 
+<body> -->
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
 
       <a class="navbar-brand" href="welcome"><img id="logo" src="/images/tastingboardlogo1.png"></a>
@@ -103,25 +62,9 @@
         </ul>
       </div>
     </div>
-  </nav>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-  <form action=""> 
-      <select name="drinks" onchange="showDrinks(this.value)">
-      <option value="">Select an entry:</option>
-      <option value="wine">Wine</option>
-      <option value="beer ">Beer</option>
-      <option value="liquor">Liquor</option>
-      </select>
-      </form>
-      <br>
-      <div id="txtHint">User drink entries will be listed here...</div>
-      
-      
+  </nav> -->
+
+    
 
   <!-- <main role="main" class="container">
     <div class="jumbotron">
@@ -130,7 +73,7 @@
         this navbar remains in its original position and moves with the rest of the page.</p>
       <a class="btn btn-lg btn-primary" onclick="requestAllBeer()" role="button">View Wine Entries</a>
     </div>
-  </main> -->
+  </main>  -->
 
 
 
@@ -141,14 +84,6 @@
     </div>
     <!-- Copyright -->
 
-
-    <!-- Footer -->
-    <!-- Footer -->
-    <!-- <footer class="py-5 bg-dark">
-        <div id="footer">
-          <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
-        </div>
-         /.container -->
   </footer>
 
   
