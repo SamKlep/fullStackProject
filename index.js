@@ -139,19 +139,22 @@ app.get("/liquor", function (req, res) {
     res.render('liquor');
 })
 
-app.get("/myboard", function (req, res) {
-    console.log('this is my tasting board');
-    res.render('myboard');
-})
 
 app.get('/myboard', function (req, res) {
-    db.beer.findAll()
-  .then((results) => {
-    results.forEach(function(index){
-    console.log(index.id, index.name);
+    models.beer.findAll()
+    res.render('myboard', {
 })
   });
+
+
+app.get('/beers', function (req, res) {
+    models.beer.findAll()
+    .then((results) => {
+        res.json(results)
+        // console.log(results)
+    })
 })
+
 
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
@@ -277,7 +280,9 @@ app.get("/beer", function (req, response) {
     console.log('beer');
     models.beer.findAll().then(function (beer){
       console.log('beer');
-      response.send('beer');
+      response.render('beer', {
+
+      });
     });
   });
 

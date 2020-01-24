@@ -13,90 +13,126 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-   crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 
   <!-- Custom styles -->
   <link href="/styles/modern-business.css" rel="stylesheet">
   <link href="/styles/myboard.css" rel="stylesheet">
 
-  
+
 
 </head>
 
 <!-- 
 <body> -->
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
 
-      <a class="navbar-brand" href="welcome"><img id="logo" src="/images/tastingboardlogo1.png"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a id="link" class="nav-link" href="welcome">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a id="link" class="nav-link" href="wine">Wine</a>
-          </li>
-          <li class="nav-item">
-            <a id="link" class="nav-link" href="beer">Beer</a>
-          </li>
-          <li class="nav-item">
-            <a id="link" class="nav-link" href="liquor">Liquor</a>
-          </li>
-          <li class="nav-item">
-            <a id="link" class="nav-link" href="myboard">My Board</a>
-          </li>
-          <li class="nav-item">
-            <a id="link" class="nav-link" href="index">Logout</a>
-          </li>
-        </ul>
-      </div>
+    <a class="navbar-brand" href="welcome"><img id="logo" src="/images/tastingboardlogo1.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a id="link" class="nav-link" href="welcome">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a id="link" class="nav-link" href="wine">Wine</a>
+        </li>
+        <li class="nav-item">
+          <a id="link" class="nav-link" href="beer">Beer</a>
+        </li>
+        <li class="nav-item">
+          <a id="link" class="nav-link" href="liquor">Liquor</a>
+        </li>
+        <li class="nav-item">
+          <a id="link" class="nav-link" href="myboard">My Board</a>
+        </li>
+        <li class="nav-item">
+          <a id="link" class="nav-link" href="index">Logout</a>
+        </li>
+      </ul>
     </div>
-  </nav> 
+  </div>
+</nav>
 
-    
 
-   <main role="main" class="container">
-    <div class="jumbotron">
-      <h1>My Board</h1>
-      <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll,
-        this navbar remains in its original position and moves with the rest of the page.</p>
-      <a class="btn btn-lg btn-primary" onclick="requestAllBeer()" role="button">View Wine Entries</a>
+
+<main role="main" class="container">
+  <div class="jumbotron">
+    <h1>My Board</h1>
+    <p class="lead">Use the buttons below to see your drink entries.</p>
+    <button onclick="clickedBeers()">
+       View Beer Entries
+    </button>
+    <button>
+      <a href='/myboard' role="button">View Wine Entries</a>
+    </button>
+    <button>
+      <a href='/myboard' role="button">View Liquor Entries</a>
+    </button>
+  </div>
+</main>
+
+<!-- <br>
+<br>
+
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      View Beer entries
+    </a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Button with data-target
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
     </div>
-  </main> 
+  </div> -->
+
+<script>
+  function clickedBeers() {
+    console.log('clicked')
+    $.ajax({
+      url: "/beers",
+      type: 'GET',
+      dataType: 'json', // added data type
+      success: function (res) {
+        console.log(res);
+        document.getElementById("beer");
+       
+      }
+    })
+  }
+
+</script>
+
+<footer>
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Tasting Board -
+    <a href="mailto:someone@gmail.com"> Email</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
 
 
 
-  <footer>
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Tasting Board -
-      <a href="mailto:someone@gmail.com"> Email</a>
-    </div>
-    <!-- Copyright -->
 
-  </footer>
+<!-- Bootstrap core JavaScript -->
 
-  
-
-
-  <!-- Bootstrap core JavaScript -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 
