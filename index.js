@@ -6,7 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-const passportSetup = require('./config/passport-setup');
+// const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
@@ -119,7 +119,7 @@ passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
-    //check if user already exists in db
+    //checks if user already exists in db
     console.log(profile)
     models.user.findOne({
       where: {
@@ -150,8 +150,6 @@ app.get('/register', (req, res) => {
 })
 
 app.post('/register', function (req, res) {
-    // console.log("This post thing is working")
-    console.log(req.body)
     models.user.create({
         password: encryptionPassword(req.body.password),
         username: req.body.username,
@@ -192,20 +190,9 @@ app.post('/index', passport.authenticate('local', {
     failureRedirect: '/index'
 }));
 
-// THIS IS A TEST
-// const initalizePassport = require('./passport-config')
-// initalizePassport (
-//     passport,
-//     email =>
-//         users.find(user => users.email === username),
-//     id => 
-//         users.find(user => users.password === inputPassword)
-// );
-
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
 app.get("/welcome", checkAuthenticated, function (req, response) {
-    console.log('Im here');
     response.render("welcome");
 });
 
@@ -218,7 +205,6 @@ app.post("/welcome",
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
 
 app.get("/register", checkNotAuthenticated, function (req, response) {
-    console.log('Im here');
     response.send("new item");
     res.render('register')
 });
