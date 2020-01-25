@@ -72,31 +72,21 @@
     <button onclick="clickedBeers()">
        View Beer Entries
     </button>
-    <button>
-      <a href='/myboard' role="button">View Wine Entries</a>
-    </button>
-    <button>
-      <a href='/myboard' role="button">View Liquor Entries</a>
-    </button>
+    <button onclick="clickedWines()">
+        View Wine Entries
+     </button>
+     <button onclick="clickedliquors()">
+        View Liquor Entries
+     </button>
   </div>
 </main>
 
-<!-- <br>
+<br>
 <br>
 
-<p>
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-      View Beer entries
-    </a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Button with data-target
-    </button>
-  </p>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-    </div>
-  </div> -->
+
+
+
 
 <script>
   function clickedBeers() {
@@ -107,8 +97,8 @@
       dataType: 'json', // added data type
       success: function (res) {
         console.log(res);
-        document.getElementById("beer");
-       
+        console.log(JSON.stringify(res));
+        
       }
     })
   }

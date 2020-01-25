@@ -155,6 +155,23 @@ app.get('/beers', function (req, res) {
     })
 })
 
+app.get('/wines', function (req, res) {
+    models.beer.findAll()
+    .then((results) => {
+        res.json(results)
+        // console.log(results)
+    })
+})
+
+app.get('/liquors', function (req, res) {
+    models.beer.findAll()
+    .then((results) => {
+        res.json(results)
+        // console.log(results)
+    })
+})
+
+
 
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
