@@ -172,21 +172,23 @@ app.get('/', (req, res) => {
 app.get("/wine", function (req, res) {
     console.log('wines for you')
     res.render('wine');
-})
+});
 
 app.get("/beer", function(req, res) { 
     res.render('beer');
-})
+});
 
 app.get("/liquor", function(req, res) { 
     res.render('liquor');
-})
+});
+
+app.get("/myboard" , function(req,res) {
+    res.render('myboard')
+});
 
 app.get("/error", function(req,res) {
-    console.log("five")
     res.render('error');
-
-})
+});
 
 app.post('/index', passport.authenticate('local', {
     successRedirect: '/welcome',
