@@ -33,15 +33,28 @@
   p {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 26px;
-    color: rgb(140, 143, 143);
+    color:black;
+  }
+
+  .description {
+    background:white;
+    border-radius: 5%;
+    border: 5px solid black;
+    padding: 5%;
   }
   
   h1 {
     color: rgb(140, 143, 143);
   }
   
+  .card-body {
+    border-radius: 5%;
+  }
+  
   .card {
     box-shadow: 0 36px 45px 0 rgba(0, 0, 0, 0.2), 0 36px 42px 0 rgba(0, 0, 0, 0.19);
+    border: 5px solid black;
+    border-radius: 5%;
   }
 
   

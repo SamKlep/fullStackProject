@@ -7,7 +7,9 @@
   body {
     background: rgb(102, 126, 135);
     background: linear-gradient( #dedede 0%, #3e5757 100%);
-    padding-top: 40px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 100vh;
   }
 
 
@@ -16,13 +18,17 @@
 }
 
 #logo {
-  width: 100px;
+  width: 450px;
   height: 60px;
 }
 
 #footer {
   width: 100%;
   position: fixed;
+}
+
+.nav-link {
+  font-size: 1.5rem;
 }
 
 #link:hover {
