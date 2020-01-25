@@ -169,20 +169,19 @@ app.get('/', (req, res) => {
     res.redirect('index');
 });
 
-app.get("/wine", function (req, res) {
-    console.log('wines for you')
+app.get("/wine", checkAuthenticated, function (req, res) {
     res.render('wine');
 });
 
-app.get("/beer", function(req, res) { 
+app.get("/beer", checkAuthenticated, function(req, res) { 
     res.render('beer');
 });
 
-app.get("/liquor", function(req, res) { 
+app.get("/liquor", checkAuthenticated, function(req, res) { 
     res.render('liquor');
 });
 
-app.get("/myboard" , function(req,res) {
+app.get("/myboard", checkAuthenticated, function(req,res) {
     res.render('myboard')
 });
 

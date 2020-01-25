@@ -5,7 +5,9 @@
 }
 
 body {
-  background-image: url("/images/beercloseup2.jpg");
+  /* background-image: url("/images/beercloseup2.jpg"); */
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
   background-repeat: no-repeat, repeat;
   background-size: cover;
 }
@@ -79,4 +81,9 @@ h4 {
 
 .nav-link {
   font-size: 1.5rem;
+}
+
+.mb-lg-0 {
+  margin-top: 10%;
+  border: 5px solid black;
 }
