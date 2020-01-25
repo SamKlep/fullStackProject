@@ -174,11 +174,11 @@ app.get("/wine", function (req, res) {
     res.render('wine');
 })
 
-app.get("/", function(req, res) { 
+app.get("/beer", function(req, res) { 
     res.render('beer');
 })
 
-app.get("/", function(req, res) { 
+app.get("/liquor", function(req, res) { 
     res.render('liquor');
 })
 
