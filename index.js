@@ -6,7 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-const passportSetup = require('./config/passport-setup');
+// const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
@@ -85,7 +85,7 @@ passport.use(new LocalStrategy (
     (username, password, done) =>{
       models.user.findOne({
         where: {
-            username: username
+            username: username,
         },
       }).then((user) =>{
         if (!user) {
@@ -109,6 +109,7 @@ app.post('/index',
   passport.authenticate('local', { failureRedirect: '/error' }),
   function(req, res) {
     res.redirect('/welcome');
+
 });
 
 // GOOGLE LOGIN
@@ -119,7 +120,7 @@ passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
-    //check if user already exists in db
+    //checks if user already exists in db
     console.log(profile)
     models.user.findOne({
       where: {
@@ -133,7 +134,8 @@ passport.use(new GoogleStrategy({
       } else {
         models.user.create({
           username: profile.displayName,
-          googleId: profile.id
+          googleId: profile.id,
+          nickname: profile.name.givenName
         }).then((newUser) => {
           console.log("New User created: " + newUser);
           done(null, newUser);
@@ -150,11 +152,10 @@ app.get('/register', (req, res) => {
 })
 
 app.post('/register', function (req, res) {
-    // console.log("This post thing is working")
-    console.log(req.body)
     models.user.create({
         password: encryptionPassword(req.body.password),
         username: req.body.username,
+        nickname: req.body.nickname
     })
     .then(function (user) {
         res.redirect("index")
@@ -173,11 +174,11 @@ app.get("/wine", function (req, res) {
     res.render('wine');
 })
 
-app.get("/", function(req, res) { 
+app.get("/beer", function(req, res) { 
     res.render('beer');
 })
 
-app.get("/", function(req, res) { 
+app.get("/liquor", function(req, res) { 
     res.render('liquor');
 })
 
@@ -192,21 +193,11 @@ app.post('/index', passport.authenticate('local', {
     failureRedirect: '/index'
 }));
 
-// THIS IS A TEST
-// const initalizePassport = require('./passport-config')
-// initalizePassport (
-//     passport,
-//     email =>
-//         users.find(user => users.email === username),
-//     id => 
-//         users.find(user => users.password === inputPassword)
-// );
-
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
 app.get("/welcome", checkAuthenticated, function (req, response) {
-    console.log('Im here');
-    response.render("welcome");
+    response.render("welcome", { nickname: req.nickname})
+    // {users: req.user};
 });
 
 app.post("/welcome",
@@ -218,7 +209,6 @@ app.post("/welcome",
 ////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
 
 app.get("/register", checkNotAuthenticated, function (req, response) {
-    console.log('Im here');
     response.send("new item");
     res.render('register')
 });

@@ -8,7 +8,6 @@ const router = require('express').Router();
 const Wine = require('../models').Wine;
 const User = require('../models').User;
 
-
 //Create router for signup or register new user/////
 ///////////////////////////////////////////////////
 
