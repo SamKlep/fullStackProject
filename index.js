@@ -46,6 +46,8 @@ const config = {
     password: 'admin'
 };
 
+
+
 const pgp = require('pg-promise')(initOptions);
 const db = pgp(config);
 
@@ -197,7 +199,7 @@ app.post('/index', passport.authenticate('local', {
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
 app.get("/welcome", checkAuthenticated, function (req, response) {
-    response.render("welcome", { nickname: req.nickname})
+    response.render("welcome", { nickname: req.session.nickname})
     // {users: req.user};
 });
 
