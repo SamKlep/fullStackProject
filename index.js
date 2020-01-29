@@ -235,6 +235,8 @@ app.post("/wine", function (req, response) {
     models.wine.create({
         name: req.body.name,
         type: req.body.type,
+        vineyard: req.body.vineyard,
+        vintage: req.body.vintage,
         date: req.body.date,
         description: req.body.description,
         rating: req.body.rating
@@ -247,8 +249,11 @@ app.post("/wine", function (req, response) {
 // DELETE /wine/:id//////////////////////////////
 
 app.delete("/wine:id", function (req, response) {
-    models.wine.delete({ name: req.body.name,
+    models.wine.delete({ 
+        name: req.body.name,
         type: req.body.type,
+        vineyard: req.body.vineyard,
+        vintage: req.body.vintage,
         date: req.body.date,
         description: req.body.description,
         rating: req.body.rating
@@ -292,6 +297,7 @@ app.put("/wine/id:", function (req, response) {
 app.post("/beer", function (req, response) {
     models.beer.create({
         name: req.body.name,
+        brewery: req.body.brewery,
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
@@ -370,6 +376,7 @@ app.put("/beer/id:", function (req, response) {
 app.post("/liquor", function (req, response) {
     models.liquor.create({
         name: req.body.name,
+        brand: req.body.brand,
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
@@ -383,7 +390,9 @@ app.post("/liquor", function (req, response) {
 // DELETE /liquor/:id
 
 app.delete("/liquor:id", function (req, response) {
-    models.liquor.delete({ name: req.body.name,
+    models.liquor.delete({ 
+        name: req.body.name,
+        brand: req.brand.name,
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
