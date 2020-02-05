@@ -56,35 +56,35 @@ router.get('/auth/google/redirect', passport.authenticate('google'), (req, res) 
 ////Create secure router to get and post wine/beer/////
 ////data///////////////////////////////////////////////
 
-  router.post('/wine', passport.authenticate('local', { session: false}), function(req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-      Wine
-        .create({
-          prod_name: req.body.prod_name,
-          prod_type: req.body.prod_type,
-          prod_date: req.body.prod_date,
-          prod_desc: req.body.prod_desc,
-          prod_rating: req.body.prod_rating
-        })
-        .then((wine) => res.status(201).send(wine))
-        .catch((error) => res.status(400).send(error));
-    } else {
-      return res.status(403).send({success: false, msg: 'Unauthorized.'});
-    }
-  });
+  // router.post('/wine', passport.authenticate('local', { session: false}), function(req, res) {
+  //   var token = getToken(req.headers);
+  //   if (token) {
+  //     Wine
+  //       .create({
+  //         prod_name: req.body.prod_name,
+  //         prod_type: req.body.prod_type,
+  //         prod_date: req.body.prod_date,
+  //         prod_desc: req.body.prod_desc,
+  //         prod_rating: req.body.prod_rating
+  //       })
+  //       .then((wine) => res.status(201).send(wine))
+  //       .catch((error) => res.status(400).send(error));
+  //   } else {
+  //     return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  //   }
+  // });
 
-  getToken = function (headers) {
-    if (headers && headers.authorization) {
-      var parted = headers.authorization.split(' ');
-      if (parted.length === 2) {
-        return parted[1];
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  };
+  // getToken = function (headers) {
+  //   if (headers && headers.authorization) {
+  //     var parted = headers.authorization.split(' ');
+  //     if (parted.length === 2) {
+  //       return parted[1];
+  //     } else {
+  //       return null;
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // };
 
   module.exports = router;  

@@ -6,7 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
-// const passportSetup = require('./config/passport-setup');
+ const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
@@ -184,7 +184,23 @@ app.get("/liquor", checkAuthenticated, function(req, res) {
 });
 
 app.get("/myboard", checkAuthenticated, function(req,res) {
+  models.user.findByPk(req.user.id, {
+    include: [
+      {
+        model: models.UserBeers, 
+        as: 'user_beers', 
+        include: [
+          {
+            model: models.beer, 
+            as: 'beers'
+          }
+        ]
+      }
+    ]}
+    ).then(function (user){
+    console.log(user.toJSON());
     res.render('myboard')
+  });
 });
 
 app.get("/error", function(req,res) {
@@ -246,7 +262,7 @@ app.post("/wine", function (req, response) {
 
 // DELETE /wine/:id//////////////////////////////
 
-app.delete("/wine:id", function (req, response) {
+app.delete("/wine/:id", function (req, response) {
     models.wine.delete({ name: req.body.name,
         type: req.body.type,
         date: req.body.date,
@@ -444,6 +460,8 @@ function checkNotAuthenticated(req, res, next) {
 app.use(function(req,res){
     res.status(404).render('error');
 });
+
+///////////Server listening///////////////
 
 app.listen(8080, function () {
     console.log('Tasting Board app listening on port 8080!');
