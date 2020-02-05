@@ -238,6 +238,8 @@ app.post("/wine", function (req, response) {
     models.wine.create({
         name: req.body.name,
         type: req.body.type,
+        vineyard: req.body.vineyard,
+        vintage: req.body.vintage,
         date: req.body.date,
         description: req.body.description,
         rating: req.body.rating
