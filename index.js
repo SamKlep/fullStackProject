@@ -71,7 +71,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     console.log("deseralize user")
     models.user.findByPk(id).then((user) => {
-      done(null, user.id);
+      done(null, user);
     });
 });
 
@@ -184,7 +184,10 @@ app.get("/liquor", checkAuthenticated, function(req, res) {
 });
 
 app.get("/myboard", checkAuthenticated, function(req,res) {
-    res.render('myboard')
+  models.beer.findAll({where: {user_id : req.user.id}}, {raw:true}).then(function (beers) {
+    console.log(beers);
+    res.render('myboard', {beers: beers})
+  });
 });
 
 app.get("/error", function(req,res) {
@@ -295,7 +298,8 @@ app.post("/beer", function (req, response) {
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
-        rating: req.body.rating
+        rating: req.body.rating,
+        user_id: req.user.id
     })
         .then(function () {
             response.render('beer');
