@@ -59,19 +59,40 @@
 
 
   <main role="main" class="container">
-    <div class="jumbotron">
-      <h1>My Board</h1>
-      <p class="lead"></p>
-      <button onclick="clickedBeers()">View Beers</button>
-    </div>
 
-    <div class="jumbotron">
-      <h1 id="beerName"></h1>
-      <p id="beerInfo"></p>
+      <!-- <div class="jumbotron">
+        <h1><u>My Board</u></h1>
+        <p><%-JSON.stringify(beers)%></p>
+       <div><%-beers.name%></div> 
+        
+       </div> -->
+      <div class="jumbotron">
+        <h1><u>My Board</u></h1>
+        <table>
+      <% for(var i=0; i < beers.length; i++) { %>
+         <tr>
+           <td><%= beers[i].dataValues.id %></td>
+           <td><%= beers[i].dataValues.name %></td>
+           <td><%= beers[i].dataValues.type %></td>
+           <td><%= beers[i].dataValues.date %></td>
+           <td><%= beers[i].dataValues.description %></td>
+           <td><%= beers[i].dataValues.rating %></td>
+         </tr>
+      <% } %>
+      </table> 
+      </div>
+     
 
-    </div>
-
-  </main>
+      <!-- <div class="jumbotron">
+        <ul><h1><u>My Board</u></h1>
+        <li><%-beers.name%></li>
+        <li><%-beers.type%></li>
+        <li><%-beers.date%></li>
+        <li><%-beers.description%></li>
+        <li><%-beers.rating%></li>
+      </ul>
+      </div> -->
+    </main>
 
 
   <footer>
@@ -79,19 +100,17 @@
     <div class="footer-copyright text-center py-3">© 2020 Tasting Board -
       <a href="mailto:someone@gmail.com"> Email</a>
     </div>
-    <!-- Copyright -->
 
-
-    <!-- Footer -->
-    <!-- Footer -->
-    <!-- <footer class="py-5 bg-dark">
-        <div id="footer">
-          <p class="m-0 text-center text-white">Copyright &copy; Tasting Board 2020</p>
-        </div>
-         /.container -->
-  </footer>
-   
+   
   
+  
+    <!-- Footer -->
+  <!-- <footer class="py-5 bg-dark">
+       <div id="footer">
+          <p class="m-0 text-center text-white">Copyright &copy; Tasting Board - 2020</p>
+        </div> -->
+        
+      </footer>
 
   <!-- Bootstrap core JavaScript -->
 

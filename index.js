@@ -71,7 +71,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     console.log("deseralize user")
     models.user.findByPk(id).then((user) => {
-      done(null, user.id);
+      done(null, user);
     });
 });
 
@@ -184,6 +184,7 @@ app.get("/liquor", checkAuthenticated, function(req, res) {
 });
 
 app.get("/myboard", checkAuthenticated, function(req,res) {
+
   models.user.findByPk(req.user.id, {
     include: [
       {
@@ -200,6 +201,7 @@ app.get("/myboard", checkAuthenticated, function(req,res) {
     ).then(function (user){
     console.log(user.toJSON());
     res.render('myboard')
+
   });
 });
 
@@ -251,6 +253,8 @@ app.post("/wine", function (req, response) {
     models.wine.create({
         name: req.body.name,
         type: req.body.type,
+        vineyard: req.body.vineyard,
+        vintage: req.body.vintage,
         date: req.body.date,
         description: req.body.description,
         rating: req.body.rating
@@ -311,7 +315,8 @@ app.post("/beer", function (req, response) {
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
-        rating: req.body.rating
+        rating: req.body.rating,
+        user_id: req.user.id
     })
         .then(function () {
             response.render('beer');
