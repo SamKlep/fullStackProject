@@ -184,24 +184,9 @@ app.get("/liquor", checkAuthenticated, function(req, res) {
 });
 
 app.get("/myboard", checkAuthenticated, function(req,res) {
-
-  models.user.findByPk(req.user.id, {
-    include: [
-      {
-        model: models.UserBeers, 
-        as: 'user_beers', 
-        include: [
-          {
-            model: models.beer, 
-            as: 'beers'
-          }
-        ]
-      }
-    ]}
-    ).then(function (user){
-    console.log(user.toJSON());
-    res.render('myboard')
-
+  models.beer.findAll({where: {user_id : req.user.id}}, {raw:true}).then(function (beers) {
+    console.log(beers);
+    res.render('myboard', {beers: beers})
   });
 });
 
@@ -391,6 +376,7 @@ app.put("/beer/id:", function (req, response) {
 app.post("/liquor", function (req, response) {
     models.liquor.create({
         name: req.body.name,
+        Manufacturer: req.body.manufacturer,
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,

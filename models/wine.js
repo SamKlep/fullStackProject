@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     rating: DataTypes.STRING
   }, {});
   wine.associate = function(models) {
-    // associations can be defined here
+
+    wine.belongsTo(models.user,{
+      as: 'wines',
+      foreignKey: 'user_id'
+    });
   };
   return wine;
 };
+
