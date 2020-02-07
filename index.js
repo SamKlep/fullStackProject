@@ -6,7 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash');
 const promise = require('bluebird');
- const passportSetup = require('./config/passport-setup');
+const passportSetup = require('./config/passport-setup');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const routes = require('./routes/indexRoutes');
@@ -18,8 +18,8 @@ var salt = process.env.SALT_KEY;
 
 app.use(session({
     secret: 'redwine',
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
 
 function encryptionPassword(password) {
@@ -154,6 +154,7 @@ app.get('/register', (req, res) => {
 })
 
 app.post('/register', function (req, res) {
+  console.log(req.body);
     models.user.create({
         password: encryptionPassword(req.body.password),
         username: req.body.username,
@@ -190,6 +191,7 @@ app.get("/myboard", checkAuthenticated, function(req,res) {
   });
 });
 
+
 app.get("/error", function(req,res) {
     res.render('error');
 });
@@ -202,21 +204,14 @@ app.post('/index', passport.authenticate('local', {
 ////////////////SHOULD DIRECT TO HOMEPAGE AFTER LOGIN////////////////////
 
 app.get("/welcome", checkAuthenticated, function (req, response) {
-    response.render("welcome", { nickname: req.session.nickname})
+    response.render("welcome", { nickname: req.user.nickname})
     // {users: req.user};
 });
 
 app.post("/welcome",
     passport.authenticate('local', { failureRedirect: '/error'}), 
     function (req, res) {
-        res.render("welcome")
-});
-
-////////////////SHOULD DIRECT TO REGISTRATION PAGE////////////////////
-
-app.get("/register", checkNotAuthenticated, function (req, response) {
-    response.send("new item");
-    res.render('register')
+        res.redirect("/welcome")
 });
 
 ////////////////LOG OUT REDIRECT//////////////////////
@@ -389,15 +384,29 @@ app.post("/liquor", function (req, response) {
 
 // DELETE /liquor/:id
 
-app.delete("/liquor:id", function (req, response) {
-    models.liquor.delete({ name: req.body.name,
-        type: req.body.type,
-        date: req.body.date,
-        description: req.body.description,
-        rating: req.body.rating })
+app.delete("/liquor/:id", function (req, response) {
+  models.liquor.destroy({
+    where: {
+       id: 1 //this will be your id that you want to delete
+    }
+  }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
+   if(rowDeleted === 1){
+      console.log('Deleted successfully');
+    }
+  }, function(err){
+     console.log(err);
+    // models.liquor.destroy({ 
+    //   name: req.body.name,
+    //   manufacturer: req.body.manufacturer,
+    //   type: req.body.type,
+    //   date: req.body.date,
+    //   description: req.body.description,
+    //   rating: req.body.rating
+      })
         .then(function (liquor) {
             console.log(liquor);
-            response.send("new liquor entry deleted with id: " + liquor.id);
+             response.send('new liquor entry deleted successfully!')
+            //  response.send("new liquor entry deleted with id: " + liquor.id);
         });
 });
 

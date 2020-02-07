@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     vintage: DataTypes.STRING,
     date: DataTypes.INTEGER,
     description: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
     rating: DataTypes.STRING
   }, {});
   wine.associate = function(models) {
