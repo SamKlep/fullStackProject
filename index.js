@@ -376,7 +376,7 @@ app.put("/beer/id:", function (req, response) {
 app.post("/liquor", function (req, response) {
     models.liquor.create({
         name: req.body.name,
-        Manufacturer: req.body.manufacturer,
+        manufacturer: req.body.manufacturer,
         type: req.body.type,
         date: req.body.date,
         description: req.body.description,
