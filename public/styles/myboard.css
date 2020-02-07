@@ -114,3 +114,7 @@ table, th, td {
 table {
   margin: 0 auto;
 }
+
+td {
+  background-color: lightgrey;
+}
